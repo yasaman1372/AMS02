@@ -1,0 +1,20 @@
+# Region file format: DS9 version 4.1
+global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+galactic
+box(0.0000000,0.0000000,1296000.000",36000.000",0) # fill=1 color=red
+circle(194.9533127,4.7209709,11190.915") # fill=1 color=red
+circle(184.4476494,-5.8021443,10477.284") # fill=1 color=red
+circle(263.6577254,-2.9325543,11798.642") # fill=1 color=red
+circle(77.5247414,-38.6811874,7681.722") # fill=1 color=red
+circle(86.3030301,-38.2885111,7200.000") # fill=1 color=red
+circle(92.6134269,-10.5594429,3781.480") # fill=1 color=red
+circle(150.8258225,-13.2442567,3838.756") # fill=1 color=red
+circle(88.7619298,24.9366286,11813.366") # fill=1 color=red
+circle(119.7148551,10.3803237,3632.634") # fill=1 color=red
+circle(63.4314081,38.6964274,3612.955") # fill=1 color=red
+circle(21.9999176,43.6618689,2837.970") # fill=1 color=red
+circle(351.3499728,40.0850469,2383.319") # fill=1 color=red
+circle(305.1720928,56.8839975,2490.493") # fill=1 color=red
+circle(12.1646866,-5.6442006,4326.701") # fill=1 color=red
+polygon(85.8938817,7.0250243,78.1150068,7.3351190,73.7934096,5.2635259,70.8379947,2.4405668,95.8474959,2.7011593,93.4775877,5.8341950) # fill=1 color=red
+circle(143.9846,28.0224,4030.912") # fill=1 color=red

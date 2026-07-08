@@ -1,0 +1,347 @@
+PreselectionCuts:
+
+  #Ecal preselection
+    
+  CutEcalCentreOfGravityX:  
+    type: "single_cut"   
+    selection: "uppercut_abs"
+    branch: "EcalCentreOfGravityX"
+    boundary: "open" 
+    args:
+      max: 31.5
+            
+
+  CutEcalCentreOfGravityY:
+    type: "single_cut"
+    selection: "uppercut_abs"
+    branch: "EcalCentreOfGravityY"
+    boundary: "open"
+    args:
+      max: 31.5
+            
+
+  #TRD preselection
+   
+  CutTrdHasUsefulTrack:
+    type: "multiple_cuts_all"
+    cuts:
+ 
+      - type: "single_cut"
+        branch: "TrdTrackNumberOfSubLayersXZ"
+        selection: "lowercut"
+        boundary: "open"       
+        arges:
+          min: 6
+
+    
+      - type: "single_cut"
+        branch: "TrdTrackNumberOfSubLayersYZ"
+        selection: "lowercut"
+        boundary: "open"
+        arges:
+          min: 4
+
+
+      - type: "single_cut"
+        branch: "TrdTrackFirstSubLayerYZ"
+        selection: "lowercut"
+        boundary: "open"
+        arges:
+          min: 20
+
+    
+      - type: "single_cut"
+        branch: "TrdTrackLastSubLayerYZ"
+        selection: "uppercut"
+        boundary: "open"
+        arges:
+          max: 10
+        
+  CutEcalTrdTrackMachingChi2:
+    type: "multiple_cuts_all"
+    cuts:
+    
+      - type: "single_cut"
+        branch: "ComputeTrdEcalChi2"
+        selection: "lowercut"
+        boundary: "close"
+        args:
+        min: 0.0
+        
+      - type: "single_cut"
+        branch: "ComputeTrdEcalChi2"
+        selection: "uppercut"
+        boundary: "close"
+        args:   
+        max: 6.0
+
+        
+  #TOF preselection
+  CutTofNumberOfLayers:
+    type: "single_cut"
+    branch: "TofNumberOfLayers"
+    selection: "uppercut"
+    boundary: "open"
+    args:
+      max: 2
+
+  CutTofTimeDifference:
+    type: "multiple_cuts_all"
+    cuts:
+      - type: "single_cut"
+        branch: "TofDeltaT"
+        selection: "lowercut"
+        boundary: "close close"
+        args:
+        min: 0  
+        
+
+      - type: "single_cut"
+        branch: "TofDeltaT"
+        selection: "uppercut"
+        boundary: "close"
+        args:       
+        max: 20
+
+  CutTofTrdMatching:
+    type: "multiple_cuts_all"
+    cuts:
+      - type: "single_cut"
+        branch: "TofTrdMatchNorm"
+        selection: "lowercut"
+        boundary: "close"
+        arge:
+          min: 0
+          
+      - type: "single_cut"
+        branch: "TofTrdMatchNorm"
+        selection: "upercut"
+        boundary: "close"
+        arge:         
+          max: 30
+
+  CutTofIsDowngoing:
+    type: "single_cut"
+    branch: "TofBeta"
+    selection: "uppercut"
+    boundary: "open"
+    args:
+      max: 0
+
+   #Quality preselection
+
+  CutEcalShowerWithMaximumEnergyIsUsed:
+    type: "single_cut"
+    selection: "absolute_difference_uppercut"
+    boundary: "open"
+    branch:
+    - "EcalEnergyElectronNew"
+    - "EcalEnergyElectronNewMaximumShower " 
+    args:
+      max: 1e-5
+
+  CutIsNotInSolarArrayShadow:
+    type: "single_cut"
+    branch: "TrackerTrackIsNotInSolarArrayShadow"
+    selection: "boolian"
+    boundary: "none"
+    args: "none"
+    
+    
+        
+   
+SelectionCuts:
+  
+  CutTofBeta:
+    type: "multiple_cuts_all"
+    cuts:
+      - type: "single_cut"
+        branch: "TofBeta"
+        selection: "lowercut"
+        boundary: "close"
+        args:
+          min: 0.8
+          
+      - type: "single_cut"
+        branch: "TofBeta"
+        selection: "uppercut"
+        boundary: "close"
+        args:   
+          max: 1.25
+
+
+  CutTofUpperCharge:
+    type: "single_cut"
+    branch: "TofUpperCharge"
+    selection: "uppercut"
+    boundary: "open"  
+    args:
+      max: 2.0
+
+
+  CutTrdActiveLayers:
+    type: "single_cut"
+    branch: "TrdPActiveLayersHybrid"
+    selection: "lowercut"
+    boundary: "open"
+    args:
+      min: 15
+
+  CutTrdNoHelium:
+    type: "Energydependent_single_cut"
+    branch:
+      energy_branch: "EcalEnergyElectronNewMaximumShower"
+      mainbranch: "TrdLRHeliElec_Rigidity_HybridHits_TrdP"
+    selection: "Energydependent_lowercut"
+    boundary: "open"
+    args:
+      Rootfile: "/home/op115134/Software/YasamanAnalysis/RootFiles/EnergydependentCuts/TrdLRHeliElecLowerCut.root"
+      filename: "TrdLRHeliElecLowerCut"    
+     
+  CutTrackerPatternSortedByMDR:
+    type: "mutiple_cuts_all"
+    cuts:
+      - type: "single_cut"
+        branch: "ComputeTrackerPatternSortedByMDR"
+        selection: "lowercut"
+        boundary: "colse"
+        args:
+          min: 1
+        
+      - type: "single_cut"
+        branch: "ComputeTrackerPatternSortedByMDR"
+        selection: "uppercut"
+        boundary: "colse"
+        args:
+          max: 4     
+
+  CutTrackerCharge:
+    type: "mutiple_cuts_all"
+    cuts:
+      - type: "single_cut"
+        branch: "TrackerCharge"
+        selection: "lowercut"
+        boundary: "open"
+        args:
+          min: 0.5   
+               
+      - type: "single_cut"
+        branch: "TrackerCharge"
+        selection: "uppercut"
+        boundary: "open"
+        args: 
+          max: 1.8
+
+  CutTrackerChiSquareY:
+    type: "mutiple_cuts_all"
+    cuts:
+      - type: "single_cut"
+        branch: "TrackerTrackChoutkoMaxSpanChiSquareY"
+        selection: "lowercut"
+        boundery: "open"
+        arges:
+          min: 0.01
+          
+      - type: "single_cut"
+        branch: "TrackerTrackChoutkoMaxSpanChiSquareY"
+        selection: "uppercut"
+        boundery: "open"
+        arges:         
+          max: 25
+
+IdentificationCuts:
+    
+  CutEnergyOverRigidity:
+    type: "mutiple_cuts_all"
+    cuts:  
+      - type: "single_cut"
+        branch: "EnergyOverRigidity"
+        selection: "uppercut"
+        boundary: "open"
+        args:
+          min: 0.5
+
+      - type: "single_cut"
+        branch: "EnergyOverRigidity"
+        selection: "lowercut"
+        boundary: "open"
+        args:
+          max: 10.0
+
+  CutEcalChiSquareLateralNormalized: 
+    type: "multiple_cuts_any" 
+    cuts:
+      - type: "Energydependent_single_cut"
+        branch:
+          energy_branch: "EcalEnergyElectronNewMaximumShower"
+          main_branch: "ComputeEcalChiSquareLateralNormalized"
+        selection: "Energydependent_uppercut"
+        boundary: "open"
+        args:
+          Rootfile: "/home/op115134/Software/YasamanAnalysis/RootFiles/CutValue.root"
+          filename: "CutValues"  
+       
+      -  type: "single_cut"
+         branch: "events.EcalEnergyElectronNewMaximumShower"
+         selection: "uppercut"
+         boundary: "open"
+         args:
+           max: 10          
+ 
+  CutTrackerTrackEcalCogDeltaX:
+    type: "multiple_cuts_all"
+    cuts:
+      - type: "Energydependent_single_cut"
+        branch:
+          energy_branch: "EcalEnergyElectronNewMaximumShower"
+          main_branch: "TrackerTrackEcalCogDeltaX"
+        selection: "Energydependent_lowercut"
+        boundary: "open"
+        args:
+          Rootfile: "/home/op115134/Software/YasamanAnalysis/RootFiles/EnergydependentCuts/TrackerEcalMatchingXUpperCut.root"
+          filename: "TrackerEcalMatchingXLowerCut"
+          
+      - type: "Energydependent_single_cut"
+        branch:
+          energy_branch: "EcalEnergyElectronNewMaximumShower"
+          main_branch: "TrackerTrackEcalCogDeltaX"
+        selection: "Energydependent_uppercut"
+        boundary: "open"
+        args:
+          Rootfile: "/home/op115134/Software/YasamanAnalysis/RootFiles/EnergydependentCuts/TrackerEcalMatchingXUpperCut.root"
+          filename: "TrackerEcalMatchingXUpperCut"
+                 
+        
+
+  CutTrackerTrackEcalCogDeltaY:
+    type: "Energydependent_single_cut"  
+    branch:     
+      energy_branch: "EcalEnergyElectronNewMaximumShower"
+      main_branch: "TrackerTrackEcalCogDeltaY"
+    selection: "Energydependent_uppercut"
+    boundary: "open"
+    args:
+      Rootfile: "/home/op115134/Software/YasamanAnalysis/RootFiles/EnergydependentCuts/TrackerEcalMatchingYUpperCut.root"
+      filename: 'TrackerEcalMatchingYUpperCut'
+         
+
+
+
+AdditionalCuts:
+     
+  GeomagneticCutoff:
+    type: "single_cut"
+    branch: "GeomagneticCutoff"
+    selection: "SingleBranch_lowercut"
+    args:
+      max: 1.2
+
+          
+  NegativeRigidityTag:
+    type: "single_cut"
+    branch: "TrackerTrackChoutkoMaxSpanRigidity"
+    selection: "uppercut"
+    args:
+      max: 0     
+
+      

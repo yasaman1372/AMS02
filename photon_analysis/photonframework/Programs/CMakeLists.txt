@@ -1,0 +1,4 @@
+add_subdirectory(am_iss_writer)
+add_subdirectory(am_mc_triggers)
+add_subdirectory(am_measuring_time)
+add_subdirectory(am_photon_writer)

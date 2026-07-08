@@ -1,0 +1,1020 @@
+############################################################################     Data Paths    #################################################################################################
+ISSLeptonTreeWriterDataPass8=/hpcwork/jara0052/yasaman/treewriter_cbk/ISSLeptonTreeWriterPass8_8.0/results/LeptonAnalysis_Tree_ISS\\*.root
+MCLeptonTreeWriterDataPass8=/hpcwork/jara0052/yasaman/treewriter_cbk/MCLeptonTreeWriterPass8_8.0/results/LeptonAnalysis_Tree_MC\\*.root
+
+ISSLeptonTreeWriterDataPass7=/hpcwork/jara0052/yasaman/treewriter_cbk/step007/results/LeptonAnalysis_Tree_ISS\\*.root
+MCLeptonTreeWriterDataPass7=/hpcwork/jara0052/yasaman/treewriter_cbk/step008/results/LeptonAnaysis_Tree_MC\\*.root
+
+ISSLeptonTreeWriterDataPass6=/hpcwork/jara0052/yasaman/treewriter_cbk/step009/results/LeptonAnalysis_Tree_ISS\\*.root
+MCLeptonTreeWriterDataPass6=/hpcwork/jara0052/yasaman/treewriter_cbk/step010/results/LeptonAnalysis_Tree_MC\\*.root
+
+ElectronMCacqtfilesPass8=/hpcwork/jara0052/yasaman/treewriter_cbk/ElectronMCacqtfilesPass8_8.0/ElectronMontecarlo.list --species Electron --binningfileName $MY_ANALYSIS/Energybin.txt
+ElectronMCacqtfilesPass7=/hpcwork/jara0052/yasaman/treewriter_cbk/step002/ElectronMontecarlo.list --species Electron --binningfileName $MY_ANALYSIS/Energybin.txt
+ElectronMCacqtfilesPass6=/hpcwork/jara0052/yasaman/treewriter_cbk/step004/ElectronMontecarlo.list --species Electron --binningfileName $MY_ANALYSIS/Energybin.txt
+
+##############################################################################      ISS data      #################################################################################################
+#................... Pass8 ..................
+
+[generic]
+ISS Pass8_8.0  >>>>>> making  TOF selection cut histogram
+job:CutTof.py
+args: --threads_per_job 48 --arguments "--data_type ISS --title ISS  $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutTofISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making Upper Tof Charge histogram
+job:CutTofUpperCharge.py
+args: --threads_per_job 48 --arguments  "--data_type ISS --version pass8  $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutTofUpperChargeISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making TrdLRHeliElecLowerCut histogram
+job:TrdLRHeliElecLowerCut.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:TrdLRHeliElecLowerCutCutISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making TrdActiveLayers cut plot
+job:CutTrdActiveLayers.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutTrdActiveLayersISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making Tracker Inner Charge histogram
+job:CutTrackerCharge.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutTrackerChargeISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making Tracker track goodness of fit in Y projection histogram
+job:CutTrackerChiSquareY.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutTrackerChiSquareISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making EnergyOverRigidity cut histogram
+job:CutEnergyOverRigidity.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutEnergyOverRigidityISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making Ecal lateral cut histogram
+job:EcalLateral.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:LateralselectionCutISSPass8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making TrackerTrackEcalCogDeltaY cut plot
+job:TrackerTrackEcalCogDeltaY.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaYCutISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making TrackerTrackEcalCogDeltaX cut plot
+job:TrackerTrackEcalCogDeltaX.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaXCutISS8
+depends:none
+
+[generic]
+ISS Pass8_8.0  >>>>>> making Energy-TRD electron estimator histogram
+job:Energy_ElectronTRD_Estimator.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:Energy_TRD_EstimatorISS8
+depends:none
+
+[generic]
+ISS Pass8_8.0  >>>>>> making Energy-Ecal estimator histogram
+job:Energy_Ecal_Estimator.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:Energy_Ecal_EstimatorISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making Ecal-TRD estimators histogram
+job:2Dhistogram_Ecal_TRD_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:Ecal_TRD_EstimatorsISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making CCMVBDT-TRD Estimators histogram
+job:2Dhistogram_CCMVABDT_TRD_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CCMVBDT_TRD_EstimatorsISS8
+depends:none
+
+[generic]
+ISS Pass8_8.0  >>>>>> making CCMVBDT-Ecal Estimators histogram
+job:Ecal_CC_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CCMVBDT_Ecal_EstimatorsISS8
+depends:none
+
+[generic]
+ISS Pass8_8.0  >>>>>> preparing Trd histogram data for template fit
+job:ElectronTemplateFit.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:ElectronTemplateFitISS8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> does the 1D trd template fit for single track data sample
+job:TRD_template_fit.py
+args: --threads_per_job 48 --arguments  "--datatype ISS --tracknumber single --filepath $TASK[ElectronTemplateFitISS8]/results/TRD_templatefit_data.npz"
+nmin:0
+nmax:0
+ref:1dTrdTemplateFitISS8Single
+depends:ElectronTemplateFitISS8
+
+[generic]
+ISS Pass8_8.0  >>>>>> does the 1D trd template fit for multi track data sample
+job:TRD_template_fit.py
+args: --threads_per_job 48 --arguments  "--datatype ISS --tracknumber multiple --filepath $TASK[ElectronTemplateFitISS8]/results/TRD_templatefit_data.npz"
+nmin:0
+nmax:0
+ref:1dTrdTemplateFitISS8Multiple
+depends:ElectronTemplateFitISS8
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> smooth the fit parameters  
+job:fitparametersplot.py
+#args: --threads_per_job 48 --arguments  "--data_type ISS $TASK[ElectronTemplateFitISS8]/result/TRD_templatefit_data.npz"
+nmin:0
+nmax:0
+ref:fitparametersplotsISS8
+depends:1dTrdTemplateFitISS8Multiple,1dTrdTemplateFitISS8Single
+
+[generic]
+ISS Pass8_8.0  >>>>>> preparing CCMVBT histogram data for template fit
+job:CCMVABDT_Sample_ISS.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:ElectronCCMVBDTTemplateFitISS8
+depends:none
+
+
+#[generic]
+#ISS Pass8_8.0  >>>>>> does the 2D trd ccmva template fit
+#job:TRD_template_fit.py
+#args: --threads_per_job 48 --arguments  "--dataversion pass8 --datatype ISS --TRDtemplate_filepath $TASK[fitparametersplotsISS8]/results --CCMVAtemplate_filepath_ISS $TASK[ElectronCCMVBDTTemplateFitISS8]/results/results.npz --CCMVAtemplate_filepath_MC $TASK[ElectronCCMVBDTTemplateFitMC8]/results/results.npz --data_filepath $TASK[CCMVBDT_TRD_EstimatorsISS8]/results/results.npz "
+#nmin:0
+#nmax:0
+#ref:2dTrdTemplateFitISS8All
+#depends:none
+
+
+
+#................... Pass7 ..................
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> making  TOF selection cut histogram 
+job:CutTof.py
+args: --threads_per_job 48 --arguments "--title ISS  $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutTofISS7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> making Upper Tof Charge histogram  
+job:CutTofUpperCharge.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutTofUpperChargeISS7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> making TrdLRHeliElecLowerCut histogram  
+job:TrdLRHeliElecLowerCut.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:TrdLRHeliElecLowerCutCutISS7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> making TrdActiveLayers cut plot  
+job:CutTrdActiveLayers.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutTrdActiveLayersISS7
+depends:none
+
+[generic]
+ISS Pass7_7.9  >>>>>> making Tracker Inner Charge histogram  
+job:CutTrackerCharge.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutTrackerChargeISS7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> making Tracker track goodness of fit in Y projection histogram 
+job:CutTrackerChiSquareY.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutTrackerChiSquareISS7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> making EnergyOverRigidity cut histogram  
+job:CutEnergyOverRigidity.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutEnergyOverRigidityISS7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> making Ecal lateral cut histogram 
+job:EcalLateral.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:LateralselectionCutISSPass7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> making TrackerTrackEcalCogDeltaY cut plot  
+job:TrackerTrackEcalCogDeltaY.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaYCutISS7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> making TrackerTrackEcalCogDeltaX cut plot 
+job:TrackerTrackEcalCogDeltaX.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaXCutISS7
+depends:none
+
+[generic]
+ISS Pass7_7.9  >>>>>> making Ecal-TRD estimators histogram 
+job:2Dhistogram_Ecal_TRD_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:Ecal_TRD_EstimatorsISS7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> making CCMVBDT-TRD Estimators histogram 
+job:2Dhistogram_CCMVABDT_TRD_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CCMVBDT_TRD_EstimatorsISS7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> preparing Trd histogram data for template fit 
+job:ElectronTemplateFit.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:ElectronTemplateFitISS7
+depends:none
+
+
+[generic]
+ISS Pass7_7.9  >>>>>> preparing CCMVBT histogram data for template fit
+job:CCMVABDT_Sample_ISS.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:ElectronCCMVBDTTemplateFitISS7
+depends:none
+#..................Pass 6......................
+
+[generic]
+ISS Pass6_7.9  >>>>>> making  TOF selection cut histogram 
+job:CutTof.py
+args: --threads_per_job 48 --arguments "--title ISS  $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutTofISS6
+depends:none
+
+
+[generic]
+ISS Pass6_7.9  >>>>>> making Upper Tof Charge histogram  
+job:CutTofUpperCharge.py
+args: --threads_per_job 48 --arguments  "--data_type ISS --version pass6 $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutTofUpperChargeISS6
+depends:none
+
+[generic]
+ISS Pass6_7.9  >>>>>> making Upper Tof Charge histogram
+job:CutTofUpperChargePlot.py
+args: --threads_per_job 48 --arguments  "--data_type ISS --filenamepass8 $TASK[CutTofUpperChargeISS8]/results/results.npz"
+nmin:0
+nmax:0
+ref:CutTofUpperChargeISSplot
+depends:CutTofUpperChargeISS8
+
+[generic]
+ISS Pass6_7.9  >>>>>> making TrdLRHeliElecLowerCut histogram  
+job:TrdLRHeliElecLowerCut.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:TrdLRHeliElecLowerCutCutISS6
+depends:none
+
+
+[generic]
+ISS Pass6_7.9  >>>>>> making TrdActiveLayers cut plot  
+job:CutTrdActiveLayers.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutTrdActiveLayersISS6
+depends:none
+
+[generic]
+ISS Pass6_7.9  >>>>>> making Tracker Inner Charge histogram  
+job:CutTrackerCharge.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutTrackerChargeISS6
+depends:none
+
+
+[generic]
+ISS Pass6_7.9  >>>>>> making Tracker track goodness of fit in Y projection histogram 
+job:CutTrackerChiSquareY.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutTrackerChiSquareISS6
+depends:none
+
+
+[generic]
+ISS Pass6_7.9  >>>>>> making EnergyOverRigidity cut histogram  
+job:CutEnergyOverRigidity.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutEnergyOverRigidityISS6
+depends:none
+
+
+[generic]
+ISS Pass6_7.9  >>>>>> making Ecal lateral cut histogram 
+job:EcalLateral.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:LateralselectionCutISS6
+depends:none
+
+
+[generic]
+ISS Pass6_7.9  >>>>>> making TrackerTrackEcalCogDeltaY cut plot  
+job:TrackerTrackEcalCogDeltaY.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaYCutISS6
+depends:none
+
+
+[generic]
+ISS Pass6_7.9  >>>>>> making TrackerTrackEcalCogDeltaX cut plot 
+job:TrackerTrackEcalCogDeltaX.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaXCutISS6
+depends:none
+
+
+[generic]
+ISS Pass6_7.9  >>>>>> making Ecal-TRD Estimators histogram 
+job:2Dhistogram_Ecal_TRD_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:Ecal_TRD_EstimatorsISS6
+depends:none
+
+
+[generic]
+ISS Pass6_7.9  >>>>>> making CCMVBDT-TRD Estimators histogram
+job:2Dhistogram_CCMVABDT_TRD_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CCMVBDT_TRD_EstimatorsISS6
+depends:none
+
+
+[generic]
+ISS Pass6_7.9  >>>>>> preparing Trd histogram data for template fit 
+job:ElectronTemplateFit.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:ElectronTrdTemplateFitISS6
+depends:none
+
+[generic]
+ISS Pass6_7.9  >>>>>> preparing CCMVBT histogram data for template fit 
+job:CCMVABDT_Sample_ISS.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:ElectronCCMVBDTTemplateFitISS6
+depends:none
+
+[generic]
+ISS Pass6_7.9  >>>>>> Calculating the Efficiencies of cuts
+job:Efficiency_ISS.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:ElectronEfficienciesISS6
+depends:none
+
+[generic]
+ISS Pass6_7.9  >>>>>> Efficiency check of cuts
+job:EffCheck_ISS.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $ISSLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:ElectronEffCheckISS6
+depends:none
+###############################################################################      MC data      ###################################################################################################
+#.................... Pass 8....................
+
+[generic]
+MC Pass8_8.0  >>>>>> making TOF selection cut histogram MC data
+job:CutTof.py
+args: --threads_per_job 48 --arguments  "--data_type MC --title MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutTofMC8
+depends:none
+
+[generic]
+MC Pass8_8.0  >>>>>> making Upper Tof Charge histogram for MC data
+job:CutTofUpperCharge.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutTofUpperChargeMC8
+depends:none
+
+[generic]
+MC Pass8_8.0  >>>>>> making TrdLRHeliElecLowerCut histogram for MC data
+job:TrdLRHeliElecLowerCut.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:TrdLRHeliElecLowerCutCutMC8
+depends:none
+
+
+[generic]
+MC Pass8_8.0  >>>>>> making TrdActiveLayers cut plot for MC data
+job:CutTrdActiveLayers.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutTrdActiveLayersMC8
+depends:none
+
+[generic]
+MC Pass8_8.0  >>>>>> making Tracker Inner Charge histogram for MC data
+job:CutTrackerCharge.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutTrackerChargeMC8
+depends:none
+
+[generic]
+MC Pass8_8.0  >>>>>> making Tracker track goodness of fit in Y projection histogram for MC data
+job:CutTrackerChiSquareY.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutTrackerChiSquareMC8
+depends:none
+
+[generic]
+MC Pass8_8.0  >>>>>> making EnergyOverRigidity cut histogram for MC data
+job:CutEnergyOverRigidity.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CutEnergyOverRigidityMC8
+depends:none
+
+[generic]
+MC Pass8_8.0  >>>>>> making Ecal lateral cut histogram for MC data
+job:EcalLateral.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:LateralselectionCutMC8
+depends:none
+
+
+[generic]
+MC Pass8_8.0  >>>>>> making TrackerTrackEcalCogDeltaY cut plot for MC data
+job:TrackerTrackEcalCogDeltaY.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaYCutMC8
+depends:none
+
+
+[generic]
+MC Pass8_8.0  >>>>>> making TrackerTrackEcalCogDeltaX cut plot for MC data
+job:TrackerTrackEcalCogDeltaX.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaXCutMC8
+depends:none
+
+[generic]
+ISS Pass8_8.0  >>>>>> making Energy-TRD electron estimator histogram
+job:Energy_ElectronTRD_Estimator.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:Energy_TRD_EstimatorMC8
+depends:none
+
+[generic]
+ISS Pass8_8.0  >>>>>> making Energy-Ecal estimator histogram
+job:Energy_Ecal_Estimator.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:Energy_Ecal_EstimatorMC8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> making CCMVBDT-TRD Estimators histogram
+job:2Dhistogram_CCMVABDT_TRD_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CCMVBDT_TRD_EstimatorsMC8
+depends:none
+
+[generic]
+ISS Pass8_8.0  >>>>>> making CCMVBDT-Ecal Estimators histogram
+job:Ecal_CC_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:CCMVBDT_Ecal_EstimatorsMC8
+depends:none
+
+[generic]
+MC Pass8_8.0  >>>>>> making Ecal cut  distribution scatter  plot for MC data
+job:ElectronEcalCut.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:ElectronEcalCutMC8
+depends:none
+
+
+[interactive]
+MC Pass8_8.0  >>>>>> run MCtriggers for MC electron data
+command:MCtriggers
+args:--inputlist $ElectronMCacqtfilesPass8
+ref:MCtriggers8
+depends:none
+
+[generic]
+MC Pass8_8.0  >>>>>> it makes MC momentum histogram for MC data
+job:ElectronMCmomentumPass8.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:ElectronMCmontum8
+depends:none
+
+[generic]
+MC Pass8_8.0  >>>>>> preparing CCMVBT histogram data for template fit
+job:CCMVABDT_Sample_MC.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass8"
+nmin:0
+nmax:0
+ref:ElectronCCMVBDTTemplateFitMC8
+depends:none
+
+
+[generic]
+ISS Pass8_8.0  >>>>>> does the 2D trd ccmva template fit
+job:TRD_CCMVA_templatefit.py 
+args: --threads_per_job 48 --arguments  "--dataversion pass8 --datatype ISS --TRDtemplate_filepath $TASK[fitparametersplotsISS8]/results --CCMVAtemplate_filepath_ISS $TASK[ElectronCCMVBDTTemplateFitISS8]/results/CCMVABDT_template_ISS.npz --CCMVAtemplate_filepath_MC $TASK[ElectronCCMVBDTTemplateFitMC8]/results/CCMVABDT_template_MC.npz --data_filepath $TASK[CCMVBDT_TRD_EstimatorsISS8]/results/results.npz "
+nmin:0
+nmax:0
+ref:2dTrdTemplateFitISS8All
+depends:fitparametersplotsISS8, ElectronCCMVBDTTemplateFitMC8, ElectronCCMVBDTTemplateFitISS8, CCMVBDT_TRD_EstimatorsISS8
+
+
+#.................... Pass 7....................
+
+[generic]
+MC Pass7_7.9  >>>>>> making TOF selection cut histogram MC data 
+job:CutTof.py
+args: --threads_per_job 48 --arguments  "--title MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutTofMC7
+depends:none
+
+[generic]
+MC Pass7_7.9  >>>>>> making Upper Tof Charge histogram for MC data 
+job:CutTofUpperCharge.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutTofUpperChargeMC7
+depends:none
+
+[generic]
+MC Pass7_7.9  >>>>>> making TrdLRHeliElecLowerCut histogram for MC data 
+job:TrdLRHeliElecLowerCut.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:TrdLRHeliElecLowerCutCutMC7
+depends:none
+
+
+[generic]
+MC Pass7_7.9  >>>>>> making TrdActiveLayers cut plot for MC data 
+job:CutTrdActiveLayers.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutTrdActiveLayersMC7
+depends:none
+
+[generic]
+MC Pass7_7.9  >>>>>> making Tracker Inner Charge histogram for MC data 
+job:CutTrackerCharge.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutTrackerChargeMC7
+depends:none
+
+
+[generic]
+MC Pass7_7.9  >>>>>> making Tracker track goodness of fit in Y projection histogram for MC data 
+job:CutTrackerChiSquareY.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutTrackerChiSquareMC7
+depends:none
+
+[generic]
+MC Pass7_7.9  >>>>>> making EnergyOverRigidity cut histogram for MC data 
+job:CutEnergyOverRigidity.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:CutEnergyOverRigidityMC7
+depends:none
+
+[generic]
+MC Pass7_7.9  >>>>>> making Ecal lateral cut histogram for MC data 
+job:EcalLateral.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:LateralselectionCutMC7
+depends:none
+
+
+[generic]
+MC Pass7_7.9  >>>>>> making TrackerTrackEcalCogDeltaY cut plot for MC data 
+job:TrackerTrackEcalCogDeltaY.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaYCutMC7
+depends:none
+
+
+[generic]
+MC Pass7_7.9  >>>>>> making TrackerTrackEcalCogDeltaX cut plot for MC data 
+job:TrackerTrackEcalCogDeltaX.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaXCutMC7
+depends:none
+
+
+[generic]
+MC Pass7_7.9  >>>>>> making Ecal cut  distribution scatter  plot for MC data
+job:ElectronEcalCut.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:ElectronEcalCutMC7
+depends:none
+
+
+[interactive]
+MC Pass7_7.9  >>>>>> run MCtriggers for MC electron 
+command:MCtriggers
+args:--inputlist $ElectronMCacqtfilesPass7
+ref:MCtriggers7
+depends: none
+
+[generic]
+MC Pass7_7.9  >>>>>> it makes MC momentum histogram for MC data
+job:ElectronMCmomentum.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass7"
+nmin:0
+nmax:0
+ref:ElectronMCmontum7
+depends:none
+
+#....................... Pass 6 ....................
+
+[generic]
+MC Pass6_7.9  >>>>>> making TOF velocity measurment  histogram for MC data  
+job:CutTof.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutTofMC6
+depends:none
+
+[generic]
+MC Pass6_7.9  >>>>>> making Tof velocity hist for pass 6 and8
+job:CutTofBetaPlot.py
+args: --threads_per_job 48 --arguments  "--data_type MC --filenamepass8 $TASK[CutTofMC6]/results/results.npz --filenamepass6 $TASK[CutTofMC6]/results/results.npz"
+nmin:0
+nmax:0
+ref:CutTofMCPlot
+depends:CutTofMC6,CutTofMC8
+
+[generic]
+MC Pass6_7.9  >>>>>> making Upper Tof Charge histogram for MC data 
+job:CutTofUpperCharge.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutTofUpperChargeMC6
+depends:none
+
+[generic]
+MC Pass6_7.9  >>>>>> making Upper Tof Charge histogram
+job:CutTofUpperChargePlot.py
+args: --threads_per_job 48 --arguments  "--data_type MC --filenamepass8 $TASK[CutTofUpperChargeMC8]/results/results.npz --filenamepass6 $TASK[CutTofUpperChargeMC6]/results/results.npz"
+nmin:0
+nmax:0
+ref:CutTofUpperChargeMCplot
+depends:CutTofUpperChargeMC8,CutTofUpperChargeMC6
+
+[generic]
+MC Pass6_7.9  >>>>>> making TrdLRHeliElecLowerCut histogram for MC data 
+job:TrdLRHeliElecLowerCut.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:TrdLRHeliElecLowerCutCutMC6
+depends:none
+
+
+[generic]
+MC Pass6_7.9  >>>>>> making TrdActiveLayers cut plot for MC data 
+job:CutTrdActiveLayers.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutTrdActiveLayersMC6
+depends:none
+
+[generic]
+MC Pass6_7.9  >>>>>> making Tracker Inner Charge histogram for MC data 
+job:CutTrackerCharge.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutTrackerChargeMC6
+depends:none
+
+
+[generic]
+MC Pass6_7.9  >>>>>> making Tracker track goodness of fit in Y projection histogram for MC data
+job:CutTrackerChiSquareY.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutTrackerChiSquareMC6
+depends:none
+
+[generic]
+MC Pass6_7.9  >>>>>> making EnergyOverRigidity cut histogram for MC data
+job:CutEnergyOverRigidity.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:CutEnergyOverRigidityMC6
+depends:none
+
+[generic]
+MC Pass6_7.9  >>>>>> making Ecal lateral cut histogram for MC data 
+job:EcalLateral.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:LateralselectionMC6
+depends:none
+
+
+[generic]
+MC Pass6_7.9  >>>>>> making TrackerTrackEcalCogDeltaY cut plot for MC data
+job:TrackerTrackEcalCogDeltaY.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaYCutMC6
+depends:none
+
+
+[generic]
+MC Pass6_7.9  >>>>>> making TrackerTrackEcalCogDeltaX cut plot for MC data 
+job:TrackerTrackEcalCogDeltaX.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaXCutMC6
+depends:none
+
+
+[generic]
+MC Pass6_7.9  >>>>>> making Ecal cut  distribution scatter  plot for MC data 
+job:ElectronEcalCut.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:ElectronEcalCutMC6
+depends:none
+
+
+[interactive]
+MC Pass6_7.9  >>>>>> run MCtriggers for MC electron data
+command:MCtriggers
+args:--inputlist $ElectronMCacqtfilesPass6
+ref:MCtriggers6
+depends:none
+
+[generic]
+MC Pass6_7.9  >>>>>> it makes MC momentum histogram for MC data 
+job:ElectronMCmomentum.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:ElectronMCmontum6
+depends:none
+
+[generic]
+MC Pass6_7.9  >>>>>> preparing CCMVBT histogram data for template fit 
+job:CCMVABDT_Sample_MC.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:ElectronCCMVBDTTemplateFitMC6
+depends:none
+
+[generic]
+MC Pass6_7.9  >>>>>> Calculating the Efficiencies of cuts
+job:Efficiency_MC.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:ElectronEfficienciesMC6
+depends:none
+
+
+[generic]
+MC Pass6_7.9  >>>>>> Efficiency check of cuts
+job:EffCheck_MC.py
+args: --threads_per_job 48 --arguments  "--data_type MC $MCLeptonTreeWriterDataPass6"
+nmin:0
+nmax:0
+ref:ElectronEffCheckMC6
+depends:none
+################### Measuring time #####################
+#....................... Pass 6 ....................
+[generic]
+measuring time pass 6
+job: ExampleAnalysisHeMeasuringTime
+nmin: 0
+nmax: 0
+args: --arguments "--cutoff-factor 1.2 --cutoff-type Stoermer --cutoff-mode 25PN --start-time 1305853512 --end-time 1510526121 --binning $MY_ANALYSIS/Energybin.txt" --mpi
+#args: --arguments "--cutoff-factor 1.2 --cutoff-type Stoermer --cutoff-mode 25PN --start-time 1305853512 --end-time 1620024849 --binning $MY_ANALYSIS/Energybin.txt" --mpi
+ref: Measuring_Time_pass6
+depends: none
+
+#....................... Pass 8 ....................
+[generic]
+measuring time pass 8
+job: ExampleAnalysisHeMeasuringTime
+nmin: 0
+nmax: 0
+args: --arguments "--cutoff-factor 1.2 --cutoff-type Stoermer --cutoff-mode 25PN --start-time 1305756000 --end-time 1527458400 --binning $MY_ANALYSIS/Energybin.txt" --mpi
+#args: --arguments "--cutoff-factor 1.2 --cutoff-type Stoermer --cutoff-mode 25PN --start-time 1305755999 --end-time 1527458400 --binning $MY_ANALYSIS/Energybin.txt" --mpi
+#args: --arguments "--cutoff-factor 1.2 --cutoff-type Stoermer --cutoff-mode 25PN --start-time 1305846311 --end-time 1668123268 --binning $MY_ANALYSIS/Energybin.txt" --mpi
+#args: --arguments "--cutoff-factor 1.2 --cutoff-type Stoermer --cutoff-mode 25PN --start-time 1305853512 --end-time 1620024849 --binning $MY_ANALYSIS/Energybin.txt" --mpi
+ref: Measuring_Time_pass8
+depends: none
+

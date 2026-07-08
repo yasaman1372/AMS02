@@ -1,0 +1,209 @@
+# Region file format: DS9 version 4.1
+global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+galactic
+circle(42.8915556,0.5759002,720.000") # color=yellow text={SNR G042.8+00.6}
+circle(46.8705687,-0.2538898,446.040") # color=yellow text={SNR G046.8-00.3}
+point(195.1337784,4.2658002) # point=diamond text={PSR J0633+1746}
+point(223.7104958,-34.8968356) # point=diamond text={PKS 0454-234}
+point(119.6582282,10.4631572) # point=diamond text={PSR J0007+7303}
+point(94.1747036,-81.2160994) # point=diamond color=yellow text={KUV 00311-1938}
+point(124.4193254,-4.4359386) # point=diamond color=yellow text={TXS 0059+581}
+point(125.4649474,-13.8669648) # point=diamond color=yellow text={PSR J0106+4855}
+point(131.8269465,-60.9908059) # point=diamond text={4C +01.02}
+point(140.1429247,-16.7669331) # point=diamond color=yellow text={3C 66A}
+point(149.4658630,-28.5282968) # point=diamond text={4C +28.07}
+point(135.6752705,1.0860921) # point=diamond text={LSI +61 303}
+point(150.5758286,-13.2612012) # point=diamond text={NGC 1275}
+point(224.5265989,-50.9093258) # point=diamond text={PKS 0346-27}
+point(240.7079898,-43.6181949) # point=diamond color=yellow text={PKS 0426-380}
+point(170.5195605,-12.6021106) # point=diamond color=yellow text={MG2 J043337+2905}
+point(201.4510488,-25.2955863) # point=diamond color=yellow text={S3 0458-02}
+point(195.4785593,-20.8594858) # point=diamond color=yellow text={PKS 0502+049}
+point(195.4054400,-19.6360469) # point=diamond color=yellow text={TXS 0506+056}
+point(183.6041392,-8.7083509) # point=diamond text={TXS 0518+211}
+point(184.5507434,-5.7846130) # point=diamond text={Crab Nebula}
+point(184.5512423,-5.7838299) # point=diamond text={PSR J0534+2200}
+point(171.8192926,10.9240560) # point=diamond color=yellow text={B3 0609+413}
+point(193.4152509,-0.3075129) # point=diamond color=yellow text={TXS 0610+171}
+point(240.5011587,-21.8272472) # point=diamond color=yellow text={PSR J0614-3329}
+point(205.0931898,-0.9319254) # point=diamond text={PSR J0633+0632}
+point(143.9810755,28.0175545) # point=diamond text={S5 0716+71}
+point(216.9896947,11.3801180) # point=diamond color=yellow text={PKS 0736+01}
+point(178.2277583,33.4020115) # point=diamond text={S4 0814+42}
+point(263.5517879,-2.7872702) # point=diamond text={PSR J0835-4510}
+point(206.8121140,35.8208471) # point=diamond color=yellow text={OJ 287}
+point(158.5986033,47.9282070) # point=diamond color=yellow text={4C +55.17}
+point(165.5339154,52.7122380) # point=diamond color=yellow text={1H 1013+498}
+point(284.3425562,-1.6901302) # point=diamond color=yellow text={1FGL J1018.6-5856}
+point(285.9839061,6.6491658) # point=diamond color=yellow text={PSR J1057-5226}
+point(179.8317466,65.0314816) # point=diamond text={Mkn 421}
+point(199.4136903,78.3742942) # point=diamond text={Ton 599}
+point(186.3585504,82.7345187) # point=diamond text={PG 1218+304}
+point(295.5310348,48.3851495) # point=diamond color=yellow text={PSR J1231-1411}
+point(305.1042721,57.0624203) # point=diamond text={3C 279}
+point(95.0968490,69.2074951) # point=diamond color=yellow text={B3 1343+451}
+point(312.1950077,-0.0920105) # point=diamond color=yellow text={PSR J1410-6132}
+point(29.4873031,68.2076505) # point=diamond text={PKS 1424+240}
+point(321.4473543,17.2705793) # point=diamond text={PKS 1424-41}
+point(11.3819436,54.5805834) # point=diamond text={PKS 1502+106}
+point(351.2892523,40.1386774) # point=diamond text={PKS 1510-089}
+point(340.6805966,27.5780245) # point=diamond color=yellow text={AP Librae}
+point(21.9089449,43.9641185) # point=diamond text={PG 1553+113}
+point(331.7647176,-0.5409942) # point=diamond text={PSR J1615-5137}
+point(333.8873932,0.4085946) # point=diamond text={PSR J1620-4927}
+point(333.7154672,-0.3074638) # point=diamond text={PSR J1623-5005}
+point(61.0856088,42.3363694) # point=diamond text={4C +38.41}
+point(63.4550463,40.9488749) # point=diamond color=yellow text={3C 345}
+point(339.7814174,-0.9453153) # point=diamond color=yellow text={PSR J1650-4601}
+point(63.6000758,38.8591370) # point=diamond text={Mkn 501}
+point(344.7443225,0.1225015) # point=diamond color=yellow text={PSR J1702-4128}
+point(350.3388791,2.7683975) # point=diamond color=yellow text={TXS 1705-353}
+point(343.0978691,-2.6857401) # point=diamond text={PSR J1709-4429}
+point(342.1155482,-3.7089581) # point=diamond color=yellow text={AT20G J171106-455254}
+point(348.4392159,0.1402436) # point=diamond color=yellow text={PSR J1714-3830}
+point(346.9935435,-1.1410400) # point=diamond color=yellow text={PMN J1715-4025}
+point(34.1200455,24.4750967) # point=diamond color=yellow text={1H 1720+117}
+point(352.3893563,-0.0659309) # point=diamond text={NVSS J172628-352255}
+point(359.7403919,3.4335147) # point=diamond text={NVSS J173149-271928}
+point(356.3074158,1.0070669) # point=diamond text={PSR J1732-3131}
+point(6.4254571,4.9088261) # point=diamond text={PSR J1741-2054}
+point(359.7786785,0.0402479) # point=diamond text={NVSS J174456-290614}
+point(359.9442412,-0.0461315) # point=diamond text={Galactic Center}
+point(0.1322419,-0.1090677) # point=diamond text={PWN G0.13-0.11}
+point(17.6541743,9.6325016) # point=diamond color=yellow text={NVSS J174838-085435}
+point(7.3899584,-1.9954706) # point=diamond text={PSR J1809-2332}
+point(11.1813101,-0.3478578) # point=diamond color=yellow text={PSR J1811-1925}
+point(17.2443585,2.4446354) # point=diamond color=yellow text={PSR J1813-1246}
+point(18.5555995,-0.3773591) # point=diamond text={PSR J1826-1256}
+point(16.8815657,-1.2891785) # point=diamond color=yellow text={LS 5039}
+point(21.8971537,-0.1276691) # point=diamond color=yellow text={PSR J1831-0952}
+point(28.7893055,3.4836762) # point=diamond color=yellow text={NVSS J183128-020523}
+point(22.4766522,-0.1532559) # point=diamond text={HESS J1832-093}
+point(21.5005679,-0.8855279) # point=diamond color=yellow text={PSR J1833-1034}
+point(12.1652740,-5.7115741) # point=diamond text={PKS 1830-211}
+point(88.8752862,24.9993414) # point=diamond text={PSR J1836+5925}
+point(25.9599798,0.2646620) # point=diamond color=yellow text={PSR J1837-0604}
+point(26.5075258,0.2092740) # point=diamond color=yellow text={PSR J1838-0537}
+point(26.3177048,-0.0116892) # point=diamond text={NVSS J183922-055321}
+point(28.7874062,-0.1906629) # point=diamond text={PSR J1844-0346}
+point(29.3671491,0.1116123) # point=diamond color=yellow text={NVSS J184431-030716}
+point(33.9000135,2.3114389) # point=diamond color=yellow text={PSR J1845+0200}
+point(30.2335346,-0.1381746) # point=diamond color=yellow text={TXS 1844-025}
+point(30.7763005,-0.3301899) # point=diamond text={NVSS J184840-020408}
+point(97.4913328,25.0437013) # point=diamond color=yellow text={S4 1849+67}
+point(40.1818886,-0.8938592) # point=diamond text={PSR J1907+0602}
+point(40.0999130,-2.3361881) # point=diamond color=yellow text={TXS 1910+052}
+point(46.0467580,-4.3061429) # point=diamond text={RX J1931.1+0937}
+point(56.0818924,0.1051604) # point=diamond color=yellow text={PSR J1935+2025}
+point(57.5089057,-0.2896160) # point=diamond color=yellow text={PSR J1939+2134}
+point(68.7650148,2.8234112) # point=diamond color=yellow text={PSR J1952+3252}
+point(65.2442002,0.3769294) # point=diamond text={PSR J1954+2836}
+point(98.0033599,17.6697343) # point=diamond text={1ES 1959+650}
+point(82.3122302,6.8583003) # point=diamond text={7C 2010+4619}
+point(75.2252589,0.1170503) # point=diamond text={PSR J2021+3651}
+point(78.2251784,2.0889039) # point=diamond text={PSR J2021+4026}
+point(73.1291337,-2.3678836) # point=diamond color=yellow text={B2 2023+33}
+point(73.3604462,-3.0071497) # point=diamond color=yellow text={PSR J2028+3332}
+point(80.2241622,1.0276643) # point=diamond text={PSR J2032+4127}
+point(79.8455129,0.7000964) # point=diamond text={Cyg X-3}
+point(89.6928033,6.5526820) # point=diamond text={1ES 2037+521}
+point(88.3095774,-1.4454480) # point=diamond text={PSR J2111+4606}
+point(17.7304644,-52.2458182) # point=diamond text={PKS 2155-304}
+point(92.5896030,-10.4411440) # point=diamond text={BL Lac}
+point(99.8676004,-4.1589141) # point=diamond color=yellow text={PSR J2215+5135}
+point(106.6474839,2.9486599) # point=diamond text={PSR J2229+6114}
+point(77.4378881,-38.5824939) # point=diamond text={CTA 102}
+point(106.5620776,0.4822548) # point=diamond text={PSR J2238+5903}
+point(53.1369035,-58.1316687) # point=diamond color=yellow text={RBS 1899}
+point(53.5686120,-58.2261618) # point=diamond color=yellow text={PKS 2247-131}
+point(86.1110335,-38.1838176) # point=diamond text={3C 454.3}
+point(65.6727937,-70.9851092) # point=diamond color=yellow text={PMN J2345-1555}
+point(65.5369448,-71.8923191) # point=diamond color=yellow text={PKS 2345-16}
+point(117.5789904,3.4163920) # point=diamond color=yellow text={NVSS J235908+654438}
+circle(119.2087576,9.8292753,2700.000") # color=yellow text={SNR G119.5+10.2}
+circle(190.6722238,-1.3704886,1944.360") # color=yellow text={SNR G190.9-02.2}
+circle(262.7996920,-3.2796036,7650.000") # text={SNR G263.9-03.3}
+circle(320.9181125,-1.4314346,1272.960") # color=yellow text={SNR G320.6-01.6}
+circle(327.1719067,-0.2011468,150.120") # color=yellow text={SNR G327.2-00.1}
+circle(329.4112699,0.6122908,1090.080") # color=yellow text={SNR G329.7+00.4}
+circle(337.7601791,-0.0250709,220.320") # color=yellow text={SNR G337.8-00.1}
+circle(338.5065227,0.0792637,270.000") # color=yellow text={SNR G338.5+00.1}
+circle(344.7300819,-0.1787629,240.120") # color=yellow text={SNR G344.7-00.1}
+circle(349.7223058,0.1622854,66.960") # color=yellow text={SNR G349.7+00.2}
+circle(349.7897291,-1.9392119,1350.000") # color=yellow text={SNR G350.0-02.0}
+circle(1.4300504,-0.1421417,299.880") # color=yellow text={SNR G001.4-00.1}
+circle(3.7411314,-0.3034988,372.240") # color=yellow text={SNR G003.7-00.2}
+circle(6.5251964,0.2148712,1440.000") # color=yellow text={SNR G006.4-00.1}
+circle(8.8311721,-0.2525226,1350.000") # color=yellow text={SNR G008.7-00.1}
+circle(11.7851290,-0.0398929,209.880") # color=yellow text={SNR G012.0-00.1}
+circle(16.7245512,0.0252012,119.880") # color=yellow text={SNR G016.7+00.1}
+circle(15.9668269,-0.4563656,367.560") # color=yellow text={SNR G016.0-00.5}
+circle(18.2119795,-0.0042966,240.120") # color=yellow text={SNR G018.1-00.1}
+circle(20.0031771,-0.1437477,299.880") # color=yellow text={SNR G020.0-00.2}
+circle(18.9200394,-1.0873206,990.000") # color=yellow text={SNR G018.9-01.1}
+circle(27.8969491,0.6155865,1161.720") # color=yellow text={SNR G027.8+00.6}
+circle(31.2961570,-0.0956622,38.880") # color=yellow text={GLIMPSE C01}
+circle(31.8630904,0.0180525,209.880") # color=yellow text={3C 391}
+circle(32.3468561,-0.0046124,180.000") # color=yellow text={SNR G032.4+00.1}
+circle(32.8731983,-0.1540403,510.120") # color=yellow text={SNR G032.8-00.1}
+circle(35.6309976,-0.5455486,385.200") # color=yellow text={SNR G035.6-00.4}
+circle(39.2643977,-0.2446456,207.720") # color=yellow text={SNR G039.2-00.3}
+circle(40.4252356,-0.3021572,659.880") # color=yellow text={SNR G040.5-00.5}
+circle(41.0558978,-0.3565148,135.000") # color=yellow text={3C 397}
+circle(43.2515040,-0.1761139,119.880") # text={W 49B}
+circle(45.6679964,-0.3732321,659.880") # text={SNR G045.7-00.4}
+circle(54.2389488,-0.1783654,1199.880") # color=yellow text={SNR G054.4-00.3}
+circle(65.7663176,1.0594353,659.880") # color=yellow text={SNR G065.7+01.2}
+circle(73.8534391,1.0167101,810.000") # color=yellow text={SNR G073.9+00.9}
+circle(88.5854846,5.6875442,3117.600") # color=yellow text={SNR G089.0+04.7}
+circle(84.2177618,-0.6473053,536.760") # color=yellow text={SNR G084.2-00.8}
+circle(93.9423096,1.1892294,821.520") # color=yellow text={SNR G094.0+01.0}
+circle(111.7410303,-2.1293525,150.120") # text={Cas A}
+circle(116.5834232,0.7826654,2078.640") # color=yellow text={SNR G116.5+01.1}
+circle(132.6220645,1.5120994,2412.000") # color=yellow text={HBH 3}
+circle(133.4188467,0.9361786,2160.000") # color=yellow text={W 3}
+ellipse(150.3004579,4.5030725,5040.000",4320.000",160) # color=yellow text={SNR G150.3+04.5}
+ellipse(184.5507434,-5.7846130,216.000",144.000",45) # text={Crab Nebula}
+circle(180.2442567,-1.4943367,5400.000") # color=yellow text={Sim 147}
+circle(189.0302518,2.9799011,1368.000") # text={IC 443}
+ellipse(206.8717513,-1.7021155,5400.000",3168.000",50) # color=yellow text={Rosette}
+circle(205.7323503,0.2092792,6588.000") # color=yellow text={Monoceros}
+ellipse(260.3988607,-3.4397930,1800.000",1512.000",80) # color=yellow text={Puppis A}
+ellipse(263.8556688,-3.0890321,2700.000",1800.000",0) # text={Vela X}
+circle(266.2565672,-1.2177315,3600.000") # color=yellow text={RX J0852.0-4622}
+circle(284.2169698,-0.4007600,648.000") # color=yellow text={Westerlund 2}
+circle(320.3888177,-1.1964267,1044.000") # color=yellow text={MSH 15-52}
+circle(323.6978034,-1.0240508,1440.000") # color=yellow text={HESS J1534-571}
+ellipse(331.5195154,-0.5813247,1260.000",828.000",90) # text={HESS J1614-518}
+circle(332.3902487,-0.1412397,756.000") # text={HESS J1616-508}
+circle(353.0307440,16.7830805,3600.000") # color=yellow text={rho Ophiuchi}
+ellipse(336.3842597,0.1901967,1152.000",324.000",65) # color=yellow text={HESS J1632-478}
+circle(336.9794843,-0.1303156,46.800") # text={SNR G337.0-00.1}
+circle(338.3171612,-0.0185899,396.000") # color=yellow text={HESS J1640-465}
+circle(347.3355194,-0.4726854,2016.000") # color=yellow text={RX J1713.7-3946}
+circle(6.4397437,-0.0787588,1440.000") # text={W 28}
+ellipse(8.3948902,-0.0282848,1476.000",864.000",90) # color=yellow text={HESS J1804-216}
+circle(8.7493817,-0.0987130,1368.000") # color=yellow text={W 30}
+ellipse(11.1894057,-0.0881039,2916.000",1368.000",140) # color=yellow text={HESS J1809-193}
+ellipse(17.7759601,-0.6944445,3024.000",2772.000",118) # color=yellow text={HESS J1825-137}
+circle(24.6649897,0.5912163,684.000") # color=yellow text={SNR G024.7+00.6}
+circle(23.2068083,-0.3330309,828.000") # text={W 41}
+circle(25.1775856,-0.1157231,1944.000") # color=yellow text={HESS J1837-069}
+circle(27.2554463,0.2626423,118.800") # color=yellow text={Kes 73}
+ellipse(26.7954829,-0.1983358,2232.000",1368.000",129) # color=yellow text={HESS J1841-055}
+circle(33.6292004,0.0645402,298.800") # color=yellow text={Kes 79}
+ellipse(34.6712686,-0.3900557,1044.000",792.000",55) # text={W 44}
+ellipse(35.9648158,-0.0634817,612.000",432.000",357) # color=yellow text={HESS J1857+026}
+circle(49.1394447,-0.4951362,1080.000") # text={W 51C}
+circle(51.2570317,0.1064681,684.000") # color=yellow text={SNR G51.26+0.11}
+ellipse(68.8260744,2.7057654,1512.000",612.000",330) # color=yellow text={CTB 80}
+circle(78.1353293,2.1832583,1800.000") # text={gamma Cygni}
+ellipse(88.8355468,4.7920568,3600.000",2700.000",0) # color=yellow text={HBH 21}
+ellipse(106.2735019,2.7011264,3600.000",1440.000",135) # text={SNR G106.3+02.7}
+circle(109.1309465,-1.0193903,828.000") # color=yellow text={CTB 109}
+point(284.1656664,-0.4150543) # point=diamond color=yellow text={PSR J1023-5746}
+point(213.6632393,-83.5246613) # point=diamond color=yellow text={PKS 0118-272}
+circle(1.9025295,7.2861445,748.259")
+circle(313.8439581,0.4823220,208.825")
+circle(28.3471549,0.8545046,2999.880") # color=yellow text={SNR G028.8+01.5}
+circle(79.5043842,1.0005853,9000.000") # text={Cygnus X}

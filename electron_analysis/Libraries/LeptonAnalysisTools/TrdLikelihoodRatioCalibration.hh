@@ -1,0 +1,12 @@
+#ifndef TrdLikelihoodRatioCalibration_hh
+#define TrdLikelihoodRatioCalibration_hh
+
+#include <Rtypes.h>
+
+float TrdLRElecProt_Energy_TrdHits_TrdP_CalibrationFactor(float ecalEnergyElectron);
+float TrdLRElecProt_Energy_HybridHits_TrdP_CalibrationFactor(float ecalEnergyElectron);
+float TrdLRElecProt_Rigidity_HybridHits_TrdP_CalibrationFactor(float ecalEnergyElectron);
+float TrdLRHeliElec_Rigidity_HybridHits_TrdP_CalibrationFactor(float ecalEnergyElectron);
+
+#endif // TrdLikelihoodRatioCalibration_hh
+

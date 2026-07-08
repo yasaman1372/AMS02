@@ -1,0 +1,600 @@
+---
+analysis:
+  charge: 0
+  signal_ids: ["Gamma"]
+  energy:
+    min: 0.05
+    max: 1000
+    log_resolution: 0.0430103 # gives 100 bins
+  time:
+    min: "2011-01-01"
+    max: "2024-01-01"
+  max_charge: 4
+  estimators:
+    Energy: "McMomentum"
+    Time: "Time"
+  mc_estimators:
+    Energy: "McMomentum"
+    ThetaX: "McPrimaryDirThetaX"
+    ThetaY: "McPrimaryDirThetaY"
+    Theta: "McPrimaryDirTheta"
+    Phi: "McPrimaryDirPhi"
+  energy_range:
+    min: 2
+    max: 1000
+  energy_binning: "energy_search"
+  binnings:
+    search: [0.05, 0.25, 10, 1000]
+  mc_energy: "McMomentum"
+  preselections:
+    - "TwoTracks"
+    - "EcalShower"
+  nside: 256
+  alpha_bins: 200
+variables:
+  #  - "amsvertices"
+  - "acc"
+  - "ecal"
+  - "mcprimary"
+  - "mcsecondaries"
+  #- "mvas"
+  #- "selections"
+  - "tofclusters"
+  - "trackpair"
+  - "trdsegments"
+  - "trigger"
+  - "weighting"
+datasets: "photon_datasets.yml"
+selections:
+  mc_pp_in_utof:
+    label: "MC Pair Production in Upper ToF"
+    cuts:
+      NMcSecondaryParticles:
+        min: 1.5
+      McSecondaryPairProductionElectronId:
+        min: -0.5
+      McSecondaryPairProductionPositronId:
+        min: -0.5
+      McSecondaryPairProductionElectronCoordX:
+        min: -65
+        max: 65
+      McSecondaryPairProductionElectronCoordY:
+        min: -65
+        max: 65
+      McSecondaryPairProductionElectronCoordZ:
+        min: 60
+        max: 70
+      McSecondaryPairProductionPositronCoordX:
+        min: -65
+        max: 65
+      McSecondaryPairProductionPositronCoordY:
+        min: -65
+        max: 65
+      McSecondaryPairProductionPositronCoordZ:
+        min: 60
+        max: 70
+  single_pair:
+    label: "Exactly Two Tracks"
+    cuts:
+      TrkNTracks:
+        min: 1.5
+        max: 2.5
+  at_least_one_pair:
+    label: "At least Two Tracks"
+    cuts:
+      TrkNTracks:
+        min: 1.5
+      TrkTrackHasBestPair:
+        bool: true
+  not_too_many_trd_hits:
+    label: "Less than 50 total TRD hits"
+    cuts:
+      NTrdHits:
+        max: 50.5
+      TrdNActiveLayers:
+        max: 10.5
+      NTrdSegmentsXZ:
+        max: 0.5
+      NTrdSegmentsYZ:
+        max: 0.5
+  one_ecal_shower:
+    label: "Exactly one ECAL shower"
+    cuts:
+      NEcalShowers:
+        min: 0.5
+        max: 1.5
+  converted_photon:
+    label: "Converted Photon Selection"
+    cuts:
+      HasPhysicsTrigger:
+        bool: true
+      TrkTrackHasBestPair:
+        bool: true
+      TrkTrackBestPairRigidityProduct:
+        max: 0
+      TrdNActiveLayers:
+        max: 5.5
+      TrkTrackBestPairMinDistanceCoordZ:
+        min: 30
+      TrkTrackBestPairMinDistance:
+        max: 0.5
+      TrkTrackBestPairFirstTrackHits:
+        min: 3.5
+      TrkTrackBestPairSecondTrackHits:
+        min: 3.5
+      TrkTrackBestPairFirstHasHitInL1:
+        bool: false
+      TrkTrackBestPairSecondHasHitInL1:
+        bool: false
+      TrkTrackBestPairMinDistanceExtrapolatedRAtLowerTRD:
+        max: 70
+      TrkTrackBestPairMinDistanceExtrapolatedRAtUpperTRD:
+        max: 90
+      TrkTrackBestPairFirstClosestUTofYEnergy:
+        min: 3
+        max: 8
+      TrkTrackBestPairFirstClosestUTofXEnergy:
+        min: 3
+        max: 8
+      TrkTrackBestPairSecondClosestUTofYEnergy:
+        min: 3
+        max: 8
+      TrkTrackBestPairSecondClosestUTofXEnergy:
+        min: 3
+        max: 8
+      TrkTrackBestPairElectronRigidityRatio:
+        max: 10
+      TrkTrackBestPairMinDistanceInvariantMass:
+        max: 0.05
+  photon_candidate:
+    label: "Photon Candidate Selection"
+    cuts:
+      HasPhysicsTrigger:
+        bool: true
+      TrdNActiveLayers:
+        max: 10
+      TrkTrackHasBestPair:
+        bool: true
+  ecal_inside_fiducial_volume_corner:
+    label: "ECAL shower within the fiducial volume corner"
+    cuts:
+       EventInsideTheFiducailVolume:
+         bool: True
+  ecal_inside_fiducial_volume_border:
+    label: "ECAL shower within the fiducial volume border"
+    cuts:
+      EcalMaxEnergyShowerPositionX:
+        min: -30
+        max: 30
+      EcalMaxEnergyShowerPositionY:
+        min: -30
+        max: 30
+  ecal_outside_fiducial_volume_corner:
+    label: "ECAL shower outside the fiducial volume corner"
+    cuts:
+       EventInsideTheFiducailVolume:
+         bool: False
+  ecal_outside_fiducial_volume_border:
+    label: "ECAL shower outside the fiducial volume border"
+    cuts:
+      EcalMaxEnergyShowerPositionX:
+        min: -34
+        max: -30
+      EcalMaxEnergyShowerPositionY:
+        min: -34
+        max: -30
+  ecal_photon:
+    label: "Bastians ECAL Selection"
+    cuts:
+      # Ecal Trigger, but no ToF trigger
+      HasPhysicsEcalTrigger:
+        bool: true
+      HasPhysicsTofTrigger:
+        bool: false
+      # more than one KXRec (3D) shower
+      NEcalShowers:
+        min: 0.5
+        max: 1.5
+     # NEcal2DShowers:
+     #   min: 0.5
+     #   max: 1.5
+      # No tracker tracks
+      TrkNTracks:
+        max: 0.5
+      NTrdHits:
+        max: 10.5
+      NTrdSegmentsXZ:
+        max: 0.5
+      NTrdSegmentsYZ:
+        max: 0.5
+      # downward-going shower
+      EcalMaxEnergy2DShowerEntryPositionZ:
+        min: -150
+      # deposited energy > 1 GeV
+      EcalMaxEnergy2DShowerDepositedEnergy:
+        min: 1
+      # lateral shower energy fractions
+      EcalMaxEnergy2DShowerRatio1cm:
+        min: 0.8
+      EcalMaxEnergy2DShowerRatio3cm:
+        min: 0.95
+      # longitudinal shower fit
+      EcalMaxEnergy2DShowerLongitudinalChiSquare:
+        max: 20
+      # KXRec Likelihood
+      EcalReweightedLikelihood:
+        max: 3.2
+      # Angle between 2D and 3D shower axis (KX and EM)
+      EcalMaxEnergyShowerDirectionsAngleInDegrees_KX_EM:
+        max: 8
+      # Ecal Shower axis pointing at TRD
+      EcalMaxEnergyShowerDirectionCosTheta:
+        min: 0.9
+      # Ecal Shower axis pointing at TRD CoG method
+      # EcalMaxEnergyShowerCoGDirectionCosTheta:
+      #   min: 0.9       
+      # IsInsideTrd uses the precise TRD polygon
+      EventPassThroughLowerTRD:
+        bool: true
+      EventPassThroughUpperTRD:
+        bool: true
+      MeanLowerTofClusterEnergy:
+        max:
+          function: "broken_log_energy"
+          parameters:
+            a: 1.666
+            b: 0
+            c: 1.4
+      AccNumberOfTwosidedHits:
+        max:
+          function: "broken_log_energy"
+          parameters:
+            a: 2
+            b: -1.6
+            c: 0.5
+  MC_ecal_photon_convrted_in_Ecal:
+    label: "MC photons converting in the Ecal"
+    cuts: 
+      # Ecal Trigger, but no ToF trigger
+      HasPhysicsEcalTrigger:
+         bool: true
+      HasPhysicsTofTrigger:
+          bool: false
+      #events convernt in the Ecal
+      McPrimaryFinalZ:
+          min: -158.457
+          max: -142.792
+  TRK_TRD:
+      label: "Tracker + TRD"
+      cuts:
+        # No tracker tracks
+        TrkNTracks:
+          max: 0.5
+        NTrdHits:
+          max: 10.5
+        NTrdSegmentsXZ:
+          max: 0.5
+        NTrdSegmentsYZ:
+          max: 0.5
+        # IsInsideTrd uses the precise TRD polygon
+        EventPassThroughLowerTRD:
+          bool: true
+        EventPassThroughUpperTRD:
+          bool: true
+  TRK_TRD_LowerTOF:
+    label: "Tracker + TRD + LowerTOF"
+    cuts:
+      # No tracker tracks
+      TrkNTracks:
+        max: 0.5
+      NTrdHits:
+        max: 10.5
+      NTrdSegmentsXZ:
+        max: 0.5
+      NTrdSegmentsYZ:
+        max: 0.5
+      # IsInsideTrd uses the precise TRD polygon
+      EventPassThroughLowerTRD:
+        bool: true
+      EventPassThroughUpperTRD:
+        bool: true
+      MeanLowerTofClusterEnergy:
+        max:
+          function: "broken_log_energy"
+          parameters:
+            a: 1.666
+            b: 0
+            c: 1.4
+  TRK_TRD_LowerTOF_ACC:
+    label: "Tracker + TRD + LowerTOF + ACC"
+    cuts:
+      # No tracker tracks
+      TrkNTracks:
+        max: 0.5
+      NTrdHits:
+        max: 10.5
+      NTrdSegmentsXZ:
+        max: 0.5
+      NTrdSegmentsYZ:
+        max: 0.5
+      # IsInsideTrd uses the precise TRD polygon
+      EventPassThroughLowerTRD:
+        bool: true
+      EventPassThroughUpperTRD:
+        bool: true
+      MeanLowerTofClusterEnergy:
+        max:
+          function: "broken_log_energy"
+          parameters:
+            a: 1.666
+            b: 0
+            c: 1.4
+      AccNumberOfTwosidedHits:
+        max:
+          function: "broken_log_energy"
+          parameters:
+            a: 2
+            b: -1.6
+            c: 0.5
+  TRK_TRD_LowerTOF_ACC_Ecal:
+    label: "Tracker + TRD + LowerTOF + ACC + Ecal "
+    cuts:
+      # Exactly one KXRec (3D) shower
+      NEcalShowers:
+        min: 0.5
+        max: 1.5
+      # No tracker tracks
+      TrkNTracks:
+        max: 0.5
+      NTrdHits:
+        max: 10.5
+      NTrdSegmentsXZ:
+        max: 0.5
+      NTrdSegmentsYZ:
+        max: 0.5
+      # downward-going shower
+      EcalMaxEnergy2DShowerEntryPositionZ:
+        min: -150
+      # deposited energy > 1 GeV
+      EcalMaxEnergy2DShowerDepositedEnergy:
+        min: 1
+      # lateral shower energy fractions
+      EcalMaxEnergy2DShowerRatio1cm:
+        min: 0.8
+      EcalMaxEnergy2DShowerRatio3cm:
+        min: 0.95
+      # longitudinal shower fit
+      EcalMaxEnergy2DShowerLongitudinalChiSquare:
+        max: 20
+      # KXRec Likelihood
+      EcalReweightedLikelihood:
+        max: 3.2
+      # Angle between 2D and 3D shower axis (KX and EM)
+      EcalMaxEnergyShowerDirectionsAngleInDegrees_KX_EM:
+        max: 8
+        max: 8
+      # Ecal Shower axis pointing at TRD
+      EcalMaxEnergyShowerDirectionCosTheta:
+        min: 0.9
+        min: 0.9
+      # IsInsideTrd uses the precise TRD polygon
+      EventPassThroughLowerTRD:
+        bool: true
+      EventPassThroughUpperTRD:
+        bool: true
+      MeanLowerTofClusterEnergy:
+        max:
+          function: "broken_log_energy"
+          parameters:
+            a: 1.666
+            b: 0
+            c: 1.4
+      AccNumberOfTwosidedHits:
+        max:
+          function: "broken_log_energy"
+          parameters:
+            a: 2
+            b: -1.6
+            c: 0.5
+samples:
+  mc_pair_production:
+    label: "MC particle undergoes pair production"
+    preselection: "McPairProduction"
+    selections:
+      - "mc_pp_in_utof"
+    estimators:
+      Energy: "McMomentum"
+  all_MCecal_photons:
+    label: "All mc photon convering in ecal"
+    preselection: "EcalShower"
+    selections:
+      - "MC_ecal_photon_convrted_in_Ecal"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"  
+  ecal_photons_TRK_TRD:
+    label: "ECAL Photons with TRK and TRD cuts"
+    preselection: "EcalShower"
+    selections:
+      - "MC_ecal_photon_convrted_in_Ecal"
+      - "TRK_TRD"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"
+  ecal_photons_TRK_TRD_LowerTOF:
+    label: "ECAL Photons with TRK, TRD, LowerTOF"
+    preselection: "EcalShower"
+    selections:
+      - "MC_ecal_photon_convrted_in_Ecal"
+      - "TRK_TRD_LowerTOF"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"
+  ecal_photons_TRK_TRD_LowerTOF_ACC:
+    label: "ECAL Photons with TRK, TRD, LowerTOF, ACC cuts"
+    preselection: "EcalShower"
+    selections:
+      - "MC_ecal_photon_convrted_in_Ecal"
+      - "TRK_TRD_LowerTOF_ACC"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"
+  ecal_photons_TRK_TRD_LowerTOF_ACC_Ecal:
+    label: "ECAL Photons with TRK, TRD, LowerTOF, ACC, Ecal cuts"
+    preselection: "EcalShower"
+    selections:
+      - "MC_ecal_photon_convrted_in_Ecal"
+      - "TRK_TRD_LowerTOF_ACC_Ecal"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"
+  ecal_photons_inside_fiducial_volume_border:
+    label: "ECAL Photons"
+    preselection: "EcalShower"
+    selections:
+      - "ecal_inside_fiducial_volume_border"
+      - "ecal_photon"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"
+  ecal_photons_inside_fiducial_volume_corner:
+    label: "ECAL Photons"
+    preselection: "EcalShower"
+    selections:
+      - "ecal_inside_fiducial_volume_corner"
+      - "ecal_photon"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"
+  ecal_photons_outside_fiducial_volume_border:
+    label: "ECAL Photons outside fiducial volume corner"
+    preselection: "EcalShower"
+    selections:
+      - "ecal_outside_fiducial_volume_border"
+      - "ecal_photon"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"
+  ecal_photons_outside_fiducial_volume_corner:
+    label: "ECAL Photons outside fiducial volume corner"
+    preselection: "EcalShower"
+    selections:
+      - "ecal_outside_fiducial_volume_corner"
+      - "ecal_photon"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"
+  ecal_photons_no_fiducial:
+    label: "ECAL Photons, without fiducial volume cut"
+    preselection: "EcalShower"
+    selections:
+      - "ecal_photon"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"
+photon_analyses:
+  all_MCecal_photons:
+    sample: "all_MCecal_photons"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    comparison: "Ecal"
+  ecal_photons_TRD_TRK:
+    sample: "ecal_photons_TRK_TRD"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    comparison: "Ecal"
+  ecal_photons_TRD_TRK_LowerTOF:
+    sample: "ecal_photons_TRK_TRD_LowerTOF"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    comparison: "Ecal"
+  ecal_photons_TRD_TRK_LowerTOF_ACC:
+    sample: "ecal_photons_TRK_TRD_LowerTOF_ACC"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    comparison: "Ecal"
+  ecal_photons_TRD_TRK_LowerTOF_ACC_Ecal:
+    sample: "ecal_photons_TRK_TRD_LowerTOF_ACC_Ecal"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    comparison: "Ecal"
+  ecal_photons_inside_fiducial_volume_border:
+    sample: "ecal_photons_inside_fiducial_volume_border"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+      - "mc_pr_le"
+    comparison: "Ecal"
+    additional_variables: ["EcalMaxEnergyShowerPositionX", "EcalMaxEnergyShowerPositionY"]
+  ecal_photons_inside_fiducial_volume_corner:
+    sample: "ecal_photons_inside_fiducial_volume_corner"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+      - "mc_pr_le"
+    comparison: "Ecal"
+    additional_variables: ["EcalMaxEnergyShowerPositionX", "EcalMaxEnergyShowerPositionY"]
+  ecal_photons_outside_fiducial_volume_border:
+    sample: "ecal_photons_outside_fiducial_volume_border"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+      - "mc_pr_le"
+    comparison: "Ecal"
+    additional_variables: ["EcalMaxEnergyShowerPositionX", "EcalMaxEnergyShowerPositionY"]
+  ecal_photons_outside_fiducial_volume_corner:
+    sample: "ecal_photons_outside_fiducial_volume_corner"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+      - "mc_pr_le"
+    comparison: "Ecal"
+    additional_variables: ["EcalMaxEnergyShowerPositionX", "EcalMaxEnergyShowerPositionY"]
+  ecal_photons_no_fiducial:
+    sample: "ecal_photons_no_fiducial"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+      - "mc_pr_le"
+    comparison: "Ecal"
+    additional_variables: ["EcalMaxEnergyShowerPositionX", "EcalMaxEnergyShowerPositionY"]

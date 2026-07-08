@@ -1,0 +1,72 @@
+---
+iss:
+  name: "iss"
+  label: "ISS"
+  tex: "ISS"
+  parallel_factor: 4
+  preselections:
+    - OneTrack
+    - TwoTracks
+    - EcalShower
+  acqt_datatype: "ISS"
+  acqt_datasets:
+    - name: "B1236_pass8_8.1"
+mc_ph:
+  name: "mc_ph"
+  label: "MC photon"
+  tex: "MC photon"
+  parallel_factor: 1
+  charge: 1
+  species: "Gamma"
+  preselections:
+    - OneTrack
+    - TwoTracks
+    - EcalShower
+    - McPairProduction
+  acqt_datatype: "MC"
+  acqt_datasets:
+    - name: "B1315_ph.pl1.0_050_25.6_06_8.1"
+      pmin: 0.05
+      pmax: 0.25
+      nruns: 20
+    - name: "B1315_ph.pl1.0_2510.6_06_8.1"
+      pmin: 0.25
+      pmax: 10
+      nruns: 20
+    - name: "B1315_ph.pl1.101000.6_06_8.1"
+      pmin: 10
+      pmax: 1000
+      nruns: 20
+mc_pr:
+  name: "mc_pr"
+  label: "MC Proton"
+  tex: "MC Proton"
+  parallel_factor: 1
+  charge: 1
+  species: "Proton"
+  preselections:
+    - OneTrack
+    - TwoTracks
+    - EcalShower
+    - McHadronicPi0
+  acqt_datatype: "MC"
+  acqt_datasets:
+    - name: "B1236_pr.pl1.05100.6_02_8.1"
+      pmin: 0.5
+      pmax: 100
+    - name: "B1236_pr.pl1.10016000.6_02_8.1"
+      pmin: 100
+      pmax: 16000
+mc_el:
+  name: "mc_el"
+  label: "MC Electron"
+  tex: "MC Electron"
+  parallel_factor: 1
+  charge: 1
+  species: "Electron"
+  acqt_datatype: "MC"
+  acqt_datasets:
+    - name: "B1236_el.pl1.0_254000_8.0"
+      pmin: 0.25
+      pmax: 4000
+      nruns: 10

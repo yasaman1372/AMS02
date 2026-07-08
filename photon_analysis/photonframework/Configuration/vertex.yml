@@ -1,0 +1,885 @@
+---
+analysis:
+  charge: 0
+  signal_ids: ["Gamma"]
+  energy:
+    min: 0.05
+    max: 1000
+    log_resolution: 0.0430103 # gives 100 bins
+  time:
+    min: "2011-01-01"
+    max: "2024-01-01"
+  max_charge: 4
+  estimators:
+    Energy: "McMomentum"
+    Time: "Time"
+  mc_estimators:
+    Energy: "McMomentum"
+    ThetaX: "McPrimaryDirThetaX"
+    ThetaY: "McPrimaryDirThetaY"
+    Theta: "McPrimaryDirTheta"
+    Phi: "McPrimaryDirPhi"
+  energy_binning: "energy_search"
+  binnings:
+    search: [0.05, 0.25, 10, 1000]
+  mc_energy: "McMomentum"
+  preselections:
+    - "TwoTracks"
+    - "EcalShower"
+  nside: 256 # recommended: 128 for ECAL, 256 for Vertex
+  alpha_bins: 1000 # recommended: 200 for ECAL, 1000 for Vertex
+  energy_range_min: 0.5  # energy range for the energy range cut skymap 
+  energy_range_max: 10
+variables:
+  #  - "amsvertices"
+  - "acc"
+  - "coordinates"
+  - "ecal"
+  - "mcprimary"
+  - "mcsecondaries"
+  #- "mvas"
+  #- "selections"
+  - "tofclusters"
+  - "trackpair"
+  - "trdhits"
+  - "trdsegments"
+  - "trigger"
+  - "conversion"
+  - "weighting"
+
+
+datasets: "photon_datasets.yml"
+
+regions:
+  signal: "Vertex_Signal_Regions.reg"
+  background: "Vertex_BG_Regions.reg"
+
+
+selections:
+
+  is_signal:
+    label: 'Photon points to signal region'
+    cuts:
+      TrkTrackBestPairMinDistanceDirectionPointsToSignalRegion:
+        bool: True
+
+  is_background:
+    label: 'Photon points to background region'
+    cuts:
+      TrkTrackBestPairMinDistanceDirectionPointsToBackgroundRegion:
+        bool: True
+
+  soft_veto:
+    label: "Apply a soft early veto to reduce background"
+    cuts:
+      HasPhysicsTrigger:
+        bool: true
+      TrkTrackHasBestPair:
+        bool: true
+      TrkTrackBestPairRigidityProduct:
+        max: 0
+      NTrdHits:
+        max: 25.5
+      NTrdSegmentsXZ:
+        max: 2.5
+      NTrdSegmentsYZ:
+        max: 2.5
+      TofClustersInAllLayers:
+        bool: true
+      TrkTrackBestPairHasMatchingTofClusterInLayer0:
+        bool: true
+      TrkTrackBestPairHasMatchingTofClusterInLayer1:
+        bool: true
+      TrkTrackBestPairHasMatchingTofClusterInLayer2:
+        bool: true
+      TrkTrackBestPairHasMatchingTofClusterInLayer3:
+        bool: true
+      TrkTrackBestPairMatchingClusterInLayer2InCentralBars:
+        bool: true
+      TrkTrackBestPairMinDistanceExtrapolatedXAtUpperTRD:
+        min: -80
+        max: 80
+      TrkTrackBestPairMinDistanceExtrapolatedIsInLowerTRD:
+        bool: true
+      TrkTrackBestPairMinDistanceExtrapolatedIsInUpperTRD:
+        bool: true
+
+  ecal_pileup:
+    label: "Upgoing electrons in ECAL"
+    cuts:
+      HasPhysicsEcalTrigger:
+        bool: true
+      NEcal2DShowers:
+        min: 0.5
+        max: 1.5
+      EcalMaxEnergy2DShowerEntryPositionZ:
+        max: -150
+      EcalMaxEnergyShowerDirectionsAngleInDegrees_EM_CoG:
+        max: 8
+      EcalMaxEnergyShowerDirectionsAngleInDegrees_CR_CoG:
+        max: 6
+      # EcalCatLeak (EcalShowerStatus): missing
+      EcalMaxEnergy2DShowerRatio1cm:
+        min: 0.8
+      EcalMaxEnergy2DShowerRatio3cm:
+        min: 0.95
+      EcalMaxEnergy2DShowerLongitudinalChiSquare:
+        max: 20
+      NLowerTofClusters:
+        max: 1.5
+      TofEnergyL2:
+        max: 10
+      TofEnergyL3:
+        max: 10
+
+
+  mc_pp_in_utof:
+    label: "MC Pair Production in Upper ToF"
+    cuts:
+      NMcSecondaryParticles:
+        min: 1.5
+      McSecondaryPairProductionElectronId:
+        min: -0.5
+      McSecondaryPairProductionPositronId:
+        min: -0.5
+      McSecondaryPairProductionElectronCoordX:
+        min: -65
+        max: 65
+      McSecondaryPairProductionElectronCoordY:
+        min: -65
+        max: 65
+      McSecondaryPairProductionElectronCoordZ:
+        min: 60
+        max: 70
+      McSecondaryPairProductionPositronCoordX:
+        min: -65
+        max: 65
+      McSecondaryPairProductionPositronCoordY:
+        min: -65
+        max: 65
+      McSecondaryPairProductionPositronCoordZ:
+        min: 60
+        max: 70
+
+  mc_pp:
+    label: "MC Pair Production in Upper ToF"
+    cuts:
+      NMcSecondaryParticles:
+        min: 1.5
+      McSecondaryPairProductionElectronId:
+        min: -0.5
+      McSecondaryPairProductionPositronId:
+        min: -0.5
+
+
+  preselection:
+    label: "Vertex Preselection"
+    cuts:
+      HasPhysicsTrigger:
+        bool: True
+        tag_cuts: notrigger
+      TrkNTracks:
+        min: 1.5
+        max: 4.5
+        tag_cuts: notrackpair
+      TrkTrackBestPairRigidityProduct:
+        max: 0
+        tag_cuts: notrackpair
+      TrkTrackBestPairTracksDistanceYAtLowerTRD:
+        max: 5
+        tag_cuts: nopairquality
+      TrkTrackBestPairFirstExtrapolatedRAtLowerACC:
+        max: 55
+        tag_cuts: noacc
+      TrkTrackBestPairSecondExtrapolatedRAtLowerACC:
+        max: 55
+        tag_cuts: noacc
+      TrkMaxChargeL1:
+        max: 1.5
+        tag_cuts: nol1
+
+  physics_trigger:
+    label: 'Has any Physics Trigger'
+    cuts:
+      HasPhysicsTrigger:
+        bool: true
+        tag_cuts: notrigger
+    
+  at_least_one_pair:
+    label: "At least Two Tracks"
+    cuts:
+      TrkNTracks: 
+        min: 1.5
+        tag_cuts: notrackpair
+
+  opposite_rigidity_track_pair:
+    label: "Converted Photon Track Selection"
+    cuts:
+      TrkTrackBestPairRigidityProduct:
+        max: 0
+        tag_cuts: notrackpair
+
+  no_acc_extrapolation:
+    label: "No Track through ACC"
+    cuts:
+      TrkTrackBestPairFirstExtrapolatedRAtLowerACC:
+        max: 55
+        tag_cuts: noacc
+      TrkTrackBestPairSecondExtrapolatedRAtLowerACC:
+        max: 55
+        tag_cuts: noacc
+
+  max_charge_in_L1:
+    label: "No hit in L1 with to high charge"
+    cuts:
+        TrkMaxChargeL1:
+          max: 1.5
+          tag_cuts: nol1
+
+  pair_quality:
+    label: "Max Seperation of Tracks in upper Tof"
+    cuts:
+      TrkTrackBestPairTracksDistanceYAtLowerTRD:
+        max: 5
+        tag_cuts: nopairquality
+  
+  trd_pileup:
+    label: "TRD Pileup Ecal Cuts"
+    cuts:
+      HasPhysicsEcalTrigger:
+        bool: true
+      NEcalShowers:
+        min: 0.5
+        max: 1.5
+      EcalMaxEnergy2DShowerEntryPositionZ:
+        max: -150
+      EcalMaxEnergyShowerDirectionsAngleInDegrees_EM_CoG:
+        max: 8
+      EcalMaxEnergyShowerDirectionsAngleInDegrees_CR_CoG:
+        max: 6
+      EcalMaxEnergy2DShowerRatio1cm:
+        min: 0.8
+      EcalMaxEnergy2DShowerRatio3cm:
+        min: 0.95
+      EcalMaxEnergy2DShowerLongitudinalChiSquare:
+        max: 20
+      TofClustersInLowerTof:
+        max: 1
+      TofEnergyInLayer2:
+        max: 10
+      TofEnergyInLayer3:
+        max: 10
+
+  tof_selection:
+    label: "Vertex Tof Selection"
+    cuts:
+      TofClustersInAllLayers:
+        bool: true
+        tag_cuts: ntoflayer
+      TofClustersInLayer0:
+        max: 2.5
+        tag_cuts: ntoflayer
+      TofClustersInLayer1:
+        max: 2.5
+        tag_cuts: ntoflayer
+      TofEnergyPerClusterInLayer0:
+        min: 3.2
+        max: 7
+        tag_cuts: notofenergy
+      TofEnergyPerClusterInLayer1:
+        min: 3.2
+        max: 7
+        tag_cuts: notofenergy
+      TofEnergieOneClusterInLayer2:
+        min: 3.2
+        max: 7
+        tag_cuts: notofenergy
+
+  tof_selection_no_energy_cut:
+    label: "Vertex Tof Selection without energy cuts"
+    cuts:
+      TofClustersInAllLayers:
+        bool: true
+        tag_cuts: ntoflayer
+      TofClustersInLayer0:
+        max: 2.5
+        tag_cuts: ntoflayer
+      TofClustersInLayer1:
+        max: 2.5
+        tag_cuts: ntoflayer
+      # TofEnergyPerClusterInLayer0:
+      #   min: 3.2
+      #   max: 7
+      #   tag_cuts: notofenergy
+      # TofEnergyPerClusterInLayer1:
+      #   min: 3.2
+      #   max: 7
+      #   tag_cuts: notofenergy
+      # TofEnergieOneClusterInLayer2:
+      #   min: 3.2
+      #   max: 7
+      #   tag_cuts: notofenergy
+
+  tof_matching_selection:
+    label: "Cluster in Tof Layer Selection"
+    cuts:
+      TrkTrackBestPairHasMatchingTofClusterInLayer0:
+        bool: true
+        tag_cuts: nomatchingcluster
+      TrkTrackBestPairHasMatchingTofClusterInLayer1:
+        bool: true
+        tag_cuts: nomatchingcluster
+      TrkTrackBestPairHasMatchingTofClusterInLayer2:
+        bool: true
+        tag_cuts: nomatchingcluster
+      TrkTrackBestPairHasMatchingTofClusterInLayer3:
+        bool: true
+        tag_cuts: nomatchingcluster
+      TrkTrackBestPairDistanceBetweenMatchingClustersInLayer0:
+        max: 1.5
+        tag_cuts: noclusterdistance
+      TrkTrackBestPairDistanceBetweenMatchingClustersInLayer1:
+        max: 1.5
+        tag_cuts: noclusterdistance
+      TrkTrackBestPairMatchingClusterInLayer2InCentralBars:
+        bool: true
+        tag_cuts: noclusterdistance
+      TrkTrackBestPairFirstAssociatedTofBeta:
+        min: 0.9
+        max: 1.5
+        tag_cuts: nobeta
+      TrkTrackBestPairSecondAssociatedTofBeta:
+        min: 0.9
+        max: 1.5
+        tag_cuts: nobeta
+
+  tof_matching_bar_cluster_selection:
+    label: "Tof Cluster matching bar"
+    cuts: 
+      TrkTrackBestPairHasMatchingTofClusterInLayer0:
+        bool: true
+        tag_cuts: nomatchingcluster
+      TrkTrackBestPairHasMatchingTofClusterInLayer1:
+        bool: true
+        tag_cuts: nomatchingcluster
+      TrkTrackBestPairHasMatchingTofClusterInLayer2:
+        bool: true
+        tag_cuts: nomatchingcluster
+      TrkTrackBestPairHasMatchingTofClusterInLayer3:
+        bool: true
+        tag_cuts: nomatchingcluster
+
+  tof_pair_cluster_distance_selection:
+    label: "Tof Cluster distance selection"
+    cuts:
+      TrkTrackBestPairDistanceBetweenMatchingClustersInLayer0:
+        max: 1.5
+        tag_cuts: noclusterdistance
+      TrkTrackBestPairDistanceBetweenMatchingClustersInLayer1:
+        max: 1.5
+        tag_cuts: noclusterdistance
+      TrkTrackBestPairMatchingClusterInLayer2InCentralBars:
+        bool: true
+        tag_cuts: noclusterdistance
+
+  tof_beta_selection:
+    label: "Beta selection"
+    cuts:
+      TrkTrackBestPairFirstAssociatedTofBeta:
+        min: 0.9
+        max: 1.5
+        tag_cuts: nobeta
+      TrkTrackBestPairSecondAssociatedTofBeta:
+        min: 0.9
+        max: 1.5
+        tag_cuts: nobeta
+
+  trd_selection:
+    label: "Vertex no TRD selection"
+    cuts:
+      TrkTrackBestPairMinDistanceExtrapolatedXAtUpperTRD:
+        min: -80
+        max: 80
+        tag_cuts: nointrd
+      TrkTrackBestPairMinDistanceExtrapolatedIsInLowerTRD:
+        bool: true
+        tag_cuts: nointrd
+      TrkTrackBestPairMinDistanceExtrapolatedIsInUpperTRD:
+        bool: true
+        tag_cuts: nointrd
+      NTrdHits:
+        max: 10.5
+        tag_cuts: notrdhit
+      NTrdSegmentsXZ:
+        max: 0.5
+        tag_cuts: notrdsegments
+      NTrdSegmentsYZ:
+        max: 0.5  
+        tag_cuts: notrdsegments
+
+  track_in_trd_selection:
+    label: "Track in Trd Selection"
+    cuts:
+      TrkTrackBestPairMinDistanceExtrapolatedXAtUpperTRD:
+        min: -80
+        max: 80
+        tag_cuts: nointrd
+      TrkTrackBestPairMinDistanceExtrapolatedIsInLowerTRD:
+        bool: true
+        tag_cuts: nointrd
+      TrkTrackBestPairMinDistanceExtrapolatedIsInUpperTRD:
+        bool: true
+        tag_cuts: nointrd
+
+  trd_hit_selection:
+    label: "Trd Hits selection"
+    cuts:
+      NTrdHits:
+        max: 10.5
+        tag_cuts: notrdhit
+
+  trd_segment_selection:
+    label: "Trd Segmaent selection"
+    cuts:
+      NTrdSegmentsXZ:
+        max: 0.5
+        tag_cuts: notrdsegments
+      NTrdSegmentsYZ:
+        max: 0.5 
+        tag_cuts: notrdsegments
+
+  lower_trd_selection:
+    label: "Vertex lower TRD selection"
+    cuts:
+      TrkTrackBestPairMinDistanceExtrapolatedXAtUpperTRD:
+        min: -80
+        max: 80
+      TrkTrackBestPairMinDistanceExtrapolatedIsInLowerTRD:
+        bool: true
+      TrkTrackBestPairMinDistanceExtrapolatedIsInUpperTRD:
+        bool: true
+      NTrdHitsZeroYZSegments:
+        max: 10.5
+      NTrdSegmentsXZ:
+        max: 0.5
+      NTrdSegmentsYZ:
+        max: 1.5  
+        #min: 0.5   # for exactly lower
+      HighestTrdSubLayerOneYZSegment:
+        max: 8
+      TrdSegmentVertexAbsAlphaY:
+        max: 5
+
+tag_cuts:
+  converted_photons:
+    default:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - pair_quality
+      - tof_layer_selection
+      - tof_cluster_energy_selection
+      - tof_matching_bar_cluster_selection
+      - tof_pair_cluster_distance_selection
+      - tof_beta_selection
+      - track_in_trd_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    notrigger: # does that even make sense
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - pair_quality
+      - tof_layer_selection
+      - tof_cluster_energy_selection
+      - tof_beta_selection
+      - track_in_trd_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    notrackpair: #except trigger and L1 more or lesse everything depends on this
+      - physics_trigger
+      - max_charge_in_L1
+      - tof_layer_selection
+      - tof_cluster_energy_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    noacc:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - max_charge_in_L1
+      - pair_quality
+      - tof_layer_selection
+      - track_in_trd_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    nol1:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - pair_quality
+      - tof_layer_selection
+      - tof_cluster_energy_selection
+      - tof_matching_bar_cluster_selection
+      - tof_pair_cluster_distance_selection
+      - tof_beta_selection
+      - track_in_trd_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    nopairquality:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - tof_layer_selection
+      - tof_cluster_energy_selection
+      - tof_beta_selection
+      - track_in_trd_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    ntoflayer:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - pair_quality
+      - track_in_trd_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    notofenergy:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - pair_quality
+      - tof_layer_selection
+      - track_in_trd_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    nomatchingcluster:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - pair_quality
+      - tof_layer_selection
+      - tof_cluster_energy_selection
+      - tof_beta_selection
+      - track_in_trd_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    noclusterdistance:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - pair_quality
+      - tof_layer_selection
+      - tof_cluster_energy_selection
+      - tof_matching_bar_cluster_selection
+      - tof_beta_selection
+      - track_in_trd_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    nobeta:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - pair_quality
+      - tof_layer_selection
+      #- tof_matching_bar_cluster_selection
+      #- tof_pair_cluster_distance_selection
+      - track_in_trd_selection
+      - trd_hit_selection
+      - trd_segment_selection
+    nointrd:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - pair_quality
+      - tof_layer_selection
+      - tof_cluster_energy_selection
+      - tof_matching_bar_cluster_selection
+      - tof_pair_cluster_distance_selection
+      - tof_beta_selection
+    notrdhit:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - pair_quality
+      - tof_layer_selection
+      - tof_cluster_energy_selection
+      - tof_matching_bar_cluster_selection
+      - tof_pair_cluster_distance_selection
+      - tof_beta_selection
+      - track_in_trd_selection
+    notrdsegments:
+      - physics_trigger
+      - at_least_one_pair
+      - opposite_rigidity_track_pair
+      - no_acc_extrapolation
+      - max_charge_in_L1
+      - pair_quality
+      - tof_layer_selection
+      - tof_cluster_energy_selection
+      - tof_matching_bar_cluster_selection
+      - tof_pair_cluster_distance_selection
+      - tof_beta_selection
+      - track_in_trd_selection
+      - trd_hit_selection
+
+samples:
+  none:
+    label: "no selection"
+    selections: []
+  preselection:
+    label: "Preselection"
+    selections:
+      - "physics_trigger"
+      - "at_least_one_pair"
+      - "opposite_rigidity_track_pair"
+      - "no_acc_extrapolation"
+      - "max_charge_in_L1"
+      - "pair_quality"
+
+  soft_preselection:
+    label: "Sample for running selection optimization on"
+    preselection: "TwoTracks"
+    selections:
+      - "soft_veto"
+    estimators:
+      Energy: "TrkTrackBestPairRigidity"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+
+  ecal_pileup:
+    label: "Sample for TRD Pileup determination"
+    selections:
+      - "ecal_pileup"
+
+  converted_photons:
+    label: "Converted Photons"
+    preselection: "TwoTracks"
+    selections:
+      - "preselection"
+      - "tof_selection"
+      - "tof_matching_selection"
+      - "trd_selection"
+    estimators:
+      Energy: "TrkTrackBestPairRigidity"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+    tag_cuts: converted_photons
+
+  energy_in_tof:
+    label: "Converted Photons Energy in Tof"
+    preselection: "TwoTracks"
+    selections:
+      - "preselection"
+      - "tof_selection_no_energy_cut"
+      - "tof_matching_selection"
+      - "trd_selection"
+    estimators:
+      Energy: "TrkTrackBestPairRigidity"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+    tag_cuts: converted_photons
+
+  converted_photons_bremsstrahlung_corrected_energy:
+    label: "Converted Photons bremsstrahlung corrected energy"
+    preselection: "TwoTracks"
+    selections:
+      - "preselection"
+      - "tof_selection"
+      - "tof_matching_selection"
+      - "trd_selection"
+    estimators:
+      Energy: "TrkTrackBestPairBremsstrahlungCorrectedEnergy"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+    tag_cuts: converted_photons
+
+  converted_photons_corrected_energy:
+    label: "Converted Photons corrected energy"
+    preselection: "TwoTracks"
+    selections:
+      - "preselection"
+      - "tof_selection"
+      - "tof_matching_selection"
+      - "trd_selection"
+    estimators:
+      Energy: "TrkTrackBestPairCorrectedEnergy"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+    tag_cuts: converted_photons
+
+  converted_photons_lower_trd:
+    label: "Converted Photons (including lower TRD)"
+    preselection: "TwoTracks"
+    selections:
+      - "preselection"
+      - "tof_selection"
+      - "tof_matching_selection"
+      - "lower_trd_selection"
+    estimators:
+      Energy: "TrkTrackBestPairRigidity"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+
+  mc_pair_production:
+    label: "MC particle undergoes pair production"
+    preselection: "McPairProduction"
+    selections:
+      - "mc_pp_in_utof"
+    estimators:
+      Energy: "McMomentum"
+
+  trd_pileup:
+    label: "TRD pileup cut with no TRD cut"
+    preselection: "EcalShower"
+    selections:
+      - "trd_pileup"
+    estimators:
+      Energy: "TrkTrackBestPairRigidity"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+    tag_cuts: converted_photons
+
+  trd_pileup_with_trd:
+    label: "TRD pileup cut with TRD cut"
+    preselection: "EcalShower"
+    selections:
+      - "trd_pileup"
+      - "trd_hit_selection"
+      - "trd_segment_selection"
+    estimators:
+      Energy: "TrkTrackBestPairRigidity"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+    tag_cuts: converted_photons
+
+  pp_no_cuts:
+    label: "MC particle undergoes pair production"
+    preselection: "TwoTracks"
+    selections:
+      - "mc_pp"
+    estimators:
+      Energy: "McMomentum"
+  
+  pp_cuts:
+    label: "MC particle undergoes pair production"
+    preselection: "TwoTracks"
+    selections:
+      - "mc_pp"
+      - "preselection"
+      - "tof_selection"
+      - "tof_matching_selection"
+      - "trd_selection"
+    estimators:
+      Energy: "McMomentum"
+
+photon_analyses:
+  converted_photons:
+    sample: "converted_photons"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+    additional_variables: ["TrkTrackBestPairEnergyWithBremsstrahlungTotal", "TrkTrackBestPairEnergyWithBremsstrahlungBeforeL3", "TrkTrackBestPairEnergyWithBremsstrahlungBeforeL56", "TrkTrackBestPairEnergyWithBremsstrahlungBeforeL8", "TrkTrackBestPairMinDistanceDirectionPointsToBackgroundRegion", "TrkTrackBestPairMinDistanceDirectionPointsToSignalRegion", "TrkTrackBestPairBremsstrahlungCorrectedEnergy", "McWeight", "TrkTrackBestPairCorrectedEnergy", "UTCTime", "McPrimaryFinalX", "McPrimaryFinalY", "McPrimaryFinalZ", "TrkTrackBestPairMinDistanceCoordX", "TrkTrackBestPairMinDistanceCoordY", "TrkTrackBestPairMinDistanceCoordZ"]
+    comparison: "Vertex"
+
+  energy_in_tof_selection:
+    sample: "energy_in_tof"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_dataset:
+      - "mc_pr"
+      - "mc_el"
+    additional_variables: ["TofEnergyPerClusterInLayer0", "TofEnergyPerClusterInLayer1", "TofEnergieOneClusterInLayer2"]
+    comparison: "Vertex"
+
+  converted_photons_bremsstrahlung_corrected_energy:
+    sample: "converted_photons_bremsstrahlung_corrected_energy"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+    additional_variables: ["TrkTrackBestPairEnergyWithBremsstrahlungTotal", "TrkTrackBestPairEnergyWithBremsstrahlungBeforeL3", "TrkTrackBestPairEnergyWithBremsstrahlungBeforeL56", "TrkTrackBestPairEnergyWithBremsstrahlungBeforeL8", "TrkTrackBestPairMinDistanceDirectionPointsToBackgroundRegion", "TrkTrackBestPairMinDistanceDirectionPointsToSignalRegion", "TrkTrackBestPairBremsstrahlungCorrectedEnergy", "McWeight", "TrkTrackBestPairCorrectedEnergy", "TrkTrackBestPairRigidity", "UTCTime", "McPrimaryFinalX", "McPrimaryFinalY", "McPrimaryFinalZ", "TrkTrackBestPairMinDistanceCoordX", "TrkTrackBestPairMinDistanceCoordY", "TrkTrackBestPairMinDistanceCoordZ"]
+    comparison: "Vertex"
+
+  converted_photons_corrected_energy:
+    sample: "converted_photons_corrected_energy"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+    additional_variables: ["TrkTrackBestPairEnergyWithBremsstrahlungTotal", "TrkTrackBestPairEnergyWithBremsstrahlungBeforeL3", "TrkTrackBestPairEnergyWithBremsstrahlungBeforeL56", "TrkTrackBestPairEnergyWithBremsstrahlungBeforeL8", "TrkTrackBestPairMinDistanceDirectionPointsToBackgroundRegion", "TrkTrackBestPairMinDistanceDirectionPointsToSignalRegion", "TrkTrackBestPairBremsstrahlungCorrectedEnergy", "McWeight", "TrkTrackBestPairCorrectedEnergy", "TrkTrackBestPairRigidity", "UTCTime", "McPrimaryFinalX", "McPrimaryFinalY", "McPrimaryFinalZ", "TrkTrackBestPairMinDistanceCoordX", "TrkTrackBestPairMinDistanceCoordY", "TrkTrackBestPairMinDistanceCoordZ"]
+    comparison: "Vertex"
+
+  trd_pileup:
+    sample: "trd_pileup"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+    additional_variables: ["NTrdHits", "NTrdSegmentsXZ", "NTrdSegmentsYZ", "ISSTerrestrialHealpyIndex256", "ISSTerrestrialHealpyIndex128", "ISSTerrestrialHealpyIndex64", "ISSTerrestrialLongitude", "ISSTerrestrialLatitude"]
+    comparison: "Vertex"
+
+
+  # trd_pileup_trd_cut:
+  #   sample: "trd_pileup_with_trd"
+  #   iss_dataset: "iss"
+  #   mc_signal_dataset: "mc_ph"
+  #   mc_background_datasets:
+  #     - "mc_pr"
+  #     - "mc_el"
+  #   additional_variables: ["ISSHealpyIndex256", "ISSHealpyIndex128", "ISSHealpyIndex64", "ISSLongitude", "ISSLatitude"]
+  #   comparison: "Vertex"
+
+  pair_production_no_cuts:
+    sample: "pp_no_cuts"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    additional_variables: ["McPrimaryFinalX", "McPrimaryFinalY", "McPrimaryFinalZ", "TrkTrackBestPairMinDistanceCoordX", "TrkTrackBestPairMinDistanceCoordY", "TrkTrackBestPairMinDistanceCoordZ"]
+
+  pair_production_cuts:
+    sample: "pp_cuts"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    additional_variables: ["McPrimaryFinalX", "McPrimaryFinalY", "McPrimaryFinalZ", "TrkTrackBestPairMinDistanceCoordX", "TrkTrackBestPairMinDistanceCoordY", "TrkTrackBestPairMinDistanceCoordZ"]
+

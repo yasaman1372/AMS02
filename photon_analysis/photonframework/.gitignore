@@ -1,0 +1,9 @@
+build/
+bin/
+lib/
+__pycache__/
+.nfs*
+*.swp
+*.swo
+Configuration/analysis-job-settings*.cfg
+Scripts/Test.py

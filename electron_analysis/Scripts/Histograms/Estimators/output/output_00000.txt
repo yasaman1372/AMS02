@@ -1,0 +1,245 @@
+[INFO] Module analysis/1.0 loaded.
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:39: RuntimeWarning: divide by zero encountered in divide
+  return (nchi2 - meanISS) / sigmaISS
+/home/op115134/Software/YasamanAnalysis/Scripts/Cuts/ElectronIdentificationCuts.py:71: RuntimeWarning: invalid value encountered in multiply
+  result= EcalChiSquareLateralNormalizedCorrected(nchi2, energy, data_type, meanMC, meanISS, sigmaMC, sigmaISS)*(chi2 != 0.0)
+     55238 /     883811 (  6.2%)
+     18412 /     883811 (  2.1%)
+     36825 /     883811 (  4.2%)
+     92063 /     883811 ( 10.4%)
+     73651 /     883811 (  8.3%)
+    110476 /     883811 ( 12.5%)
+    128888 /     883811 ( 14.6%)
+    147301 /     883811 ( 16.7%)
+    165714 /     883811 ( 18.7%)
+    184127 /     883811 ( 20.8%)
+    239365 /     883811 ( 27.1%)
+    257778 /     883811 ( 29.2%)
+    202540 /     883811 ( 22.9%)
+    220952 /     883811 ( 25.0%)
+    294603 /     883811 ( 33.3%)
+    276190 /     883811 ( 31.2%)
+    313016 /     883811 ( 35.4%)
+    331429 /     883811 ( 37.5%)
+    405080 /     883811 ( 45.8%)
+    349842 /     883811 ( 39.6%)
+    368254 /     883811 ( 41.7%)
+    386667 /     883811 ( 43.7%)
+    423492 /     883811 ( 47.9%)
+    441905 /     883811 ( 50.0%)
+    478730 /     883811 ( 54.2%)
+    460317 /     883811 ( 52.1%)
+    515555 /     883811 ( 58.3%)
+    589206 /     883811 ( 66.7%)
+    497142 /     883811 ( 56.2%)
+    589206 /     883811 ( 66.7%)
+    552381 /     883811 ( 62.5%)
+    533968 /     883811 ( 60.4%)
+    607619 /     883811 ( 68.7%)
+    791747 /     883811 ( 89.6%)
+    626031 /     883811 ( 70.8%)
+    662857 /     883811 ( 75.0%)
+    644444 /     883811 ( 72.9%)
+    681270 /     883811 ( 77.1%)
+    699683 /     883811 ( 79.2%)
+    754922 /     883811 ( 85.4%)
+    736509 /     883811 ( 83.3%)
+    718096 /     883811 ( 81.2%)
+    773334 /     883811 ( 87.5%)
+    810159 /     883811 ( 91.7%)
+    883811 /     883811 (100.0%)
+    865398 /     883811 ( 97.9%)
+    828572 /     883811 ( 93.7%)
+    846985 /     883811 ( 95.8%)
+/home/op115134/Software/YasamanAnalysis/Scripts/Histograms/Estimators/2Dhistogram_Ecal_TRD_Estimators.py:191: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
+  mesh = plot.pcolormesh(TRD_binn, ECAL_binn , events, norm=colors.LogNorm(), cmap =plt.cm.get_cmap('jet'))
+
+job 00000 exited with return code 0

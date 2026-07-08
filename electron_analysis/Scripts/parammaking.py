@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jun  3 22:11:47 2024
+
+@author: yasaman
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import interpolate
+
+data = np.loadtxt("/Users/yasaman/Desktop/p param/t_p.txt", delimiter=',')
+
+def lafferty_whyatt(edges, gamma):
+     ex = 1 - gamma
+     rmin = edges[:-1]
+     rmax = edges[1:]
+     return ((rmax - rmin) * ex / (rmax**ex - rmin**ex))**(1 / gamma)
+
+en=np.array([0.5,0.65,0.82,1.01,1.22,1.46,1.72,2.0,2.31,2.65,3.0,3.36,3.73,
+                          4.12,4.54,5.0,5.49,6.0,6.54,7.1,7.69,8.3,8.95,9.62,10.32,11.04,
+                          11.8,12.59,13.41,14.25,15.14,16.05,17.0,17.98,18.99,20.04,21.13,
+                          22.25,23.42,24.62,25.9,27.25,28.68,30.21,31.82,33.53,35.36,37.31,
+                          39.39,41.61,44.0,46.57,49.33,52.33,55.58,59.13,63.02,67.3,72.05,
+                          77.37,83.36,90.19,98.08,107.3,118.4,132.1,148.8,169.9,197.7,237.2,
+                          290.0,370.0,500.0,700.0,1000.0])
+
+E = lafferty_whyatt(en, 3)
+
+f=interpolate.interp1d(data[:,0], data[:,1],fill_value='extrapolate')
+ynew = f(E)
+
+plt.scatter(data[:,0],data[:,1])
+plt.plot(E,ynew)
+plt.xscale("log")
+plt.show()
+
+np.save("/Users/yasaman/Desktop/p param/t_p.npy",ynew)

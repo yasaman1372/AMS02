@@ -1,0 +1,146 @@
+############preparing acqt files for tree writers:
+
+######pass8
+
+[interactive]
+creating acqt files for ISS data pass8_8.0
+command:make_ACQT_filelist.py
+args:ISS B1236_pass8_8.0
+ref:ISSacqtfilesPass8_8.0
+depends:none
+
+[interactive]
+creating acqt files for MC electron data pass8_8.0
+command: make_ACQT_filelist.py
+args: -r -o ElectronMontecarlo.list MC "B1236_el.*_8.0"
+ref:ElectronMCacqtfilesPass8_8.0
+depends:none
+
+######pass7
+
+[interactive]
+creating acqt files for ISS data pass7_7.9
+command:make_ACQT_filelist.py
+args:ISS B1130_pass7_7.9
+ref:ISSacqtfilesPass7_7.9
+depends:none
+
+[interactive]
+creating acqt files for MC electron data pass7_7.9
+command: make_ACQT_filelist.py
+args: -r -o ElectronMontecarlo.list MC "B1220_el.*_7.9"
+ref:ElectronMCacqtfilesPass7_7.9
+depends:none
+
+#####pass6
+
+[interactive]
+creating acqt files for ISS data pass6_7.6
+command:make_ACQT_filelist.py
+args:ISS B950_pass6_7.6
+ref:ISSacqtfilesPass6_7.6
+depends:none
+
+
+[interactive]
+creating acqt files for MC electron data pass 6_7.6
+command: make_ACQT_filelist.py
+args: -r -o ElectronMontecarlo.list MC "B1091_el.*_7.6"
+ref:ElectronMCacqtfilesPass6_7.6
+depends:none
+
+##########producing MC scaling files:
+
+#####pass8
+
+[interactive]
+Producing MC scaling file for electron data pass8_8.0
+command: produce_mc_scalings --inputlist $TASK[ElectronMCacqtfilesPass8_8.0]/ElectronMontecarlo.list
+ref:ElectronMCscalingPass8_8.0
+depends:ElectronMCacqtfilesPass8_8.0
+
+
+#####pass7
+
+[interactive]
+Producing MC scaling file for electron data pass7_7.9
+command: produce_mc_scalings --inputlist $TASK[ElectronMCacqtfilesPass7_7.9]/ElectronMontecarlo.list
+ref:ElectronMCscalingPass7_7.9
+depends:ElectronMCacqtfilesPass7_7.9
+
+#####pass6
+
+[interactive]
+Producing MC scaling file pass 6_7.9
+command: produce_mc_scalings --inputlist $TASK[ElectronMCacqtfilesPass6_7.6]/ElectronMontecarlo.list
+ref:ElectronMCscalingPass6_7.6
+depends:ElectronMCacqtfilesPass6_7.6
+
+#########Running Tree writers:
+
+#####pass8
+
+[acqt]
+running Lepton tree writer for ISS data pass8_8.0
+job:LeptonTreeWriter
+filelist:$TASK[ISSacqtfilesPass8_8.0]/B1236_pass8_8.0_all.list
+args:--mpi --partition c18m --nruns 10  --timelimit 24:00
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:ISSLeptonTreeWriterPass8_8.0
+depends:ISSacqtfilesPass8_8.0
+
+[acqt]
+running Lepton tree writer for MC electron pass8_8.0
+job:LeptonTreeWriter
+filelist:$TASK[ElectronMCacqtfilesPass8_8.0]/ElectronMontecarlo.list
+args:--mpi --partition c18m --nruns 10 --timelimit 24:00 --arguments "--McSpectrumScaler/inputfile $TASK[ElectronMCscalingPass8_8.0]/mcScalingWeights.root"
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:MCLeptonTreeWriterPass8_8.0
+depends: ElectronMCacqtfilesPass8_8.0 , ElectronMCscalingPass8_8.0
+
+#####pass7
+
+[acqt]
+running Lepton tree writer for ISS data pass7_7.9
+job:LeptonTreeWriter
+filelist:$TASK[ISSacqtfilesPass7_7.9]/B1130_pass7_7.9_all.list
+args:--mpi --partition c18m --nruns 10  --timelimit 24:00
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:ISSLeptonTreeWriterPass7_7.9
+depends:ISSacqtfilesPass7_7.9
+
+[acqt]
+running Lepton tree writer for MC electron pass7_7.9
+job:LeptonTreeWriter
+filelist:$TASK[ElectronMCacqtfilesPass7_7.9]/ElectronMontecarlo.list
+args:--mpi --partition c18m --nruns 10 --timelimit 24:00 --arguments "--McSpectrumScaler/inputfile $TASK[ElectronMCscalingPass7_7.9]/mcScalingWeights.root"
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:MCLeptonTreeWriterPass7_7.9
+depends: ElectronMCacqtfilesPass7_7.9 , ElectronMCscalingPass7_7.9
+
+#####pass6
+
+[acqt]
+running Lepton  tree writer for ISS data pass 6_7.6
+job:LeptonTreeWriter
+filelist:$TASK[ISSacqtfilesPass6_7.6]/B950_pass6_7.6_all.list
+args:--mpi --partition c18m --nruns 10  --timelimit 24:00
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:ISSLeptonTreeWriterPass6_7.6
+depends:ISSacqtfilesPass6_7.6
+
+[acqt]
+running Lepton tree writer for MC electron pass 6_7.6
+job:LeptonTreeWriter
+filelist:$TASK[ElectronMCacqtfilesPass6_7.6]/ElectronMontecarlo.list
+args:--mpi --partition c18m --nruns 10 --timelimit 24:00 --arguments "--McSpectrumScaler/inputfile $TASK[ElectronMCscalingPass6_7.6]/mcScalingWeights.root"
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:MCLeptonTreeWriterPass6_7.6
+depends: ElectronMCacqtfilesPass6_7.6 , ElectronMCscalingPass6_7.6
+

@@ -1,0 +1,526 @@
+[interactive]
+creat acqt files for ISS data
+command:make_ACQT_filelist.py 
+args:ISS B1130_pass7_7.9
+ref:ISSacqtfiles
+depends:none
+
+[interactive]
+creat acqt files for MC electron data
+command: make_ACQT_filelist.py 
+args: -r -o ElectronMontecarlo.list MC "B1220_el.*_7.9"
+ref:ElectronMCacqtfiles
+depends:none
+
+#[interactive]
+#creat acqt files for MC proton data
+#command: make_ACQT_filelist.py 
+#args: -r -o ProtonMontecarlo.list MC "B1220_pr.*_7.9"
+#ref:ProtonMCacqtfiles
+
+[interactive]
+Produce MC scaling file
+command: produce_mc_scalings --inputlist $TASK[ElectronMCacqtfiles]/ElectronMontecarlo.list
+ref:ElectronMCscaling
+depends:ElectronMCacqtfiles
+
+
+[acqt]
+run tree writer for ISS data
+job:ExampleAnalysisTreeWriter
+filelist:$TASK[ISSacqtfiles]/B1130_pass7_7.9_all.list
+args:--mpi --partition c18m --nruns 20
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:ISSTreeWriter
+depends: ISSacqtfiles
+
+[acqt]
+run tree writer	for MC electron 
+job:ExampleAnalysisTreeWriter
+filelist:$TASK[ElectronMCacqtfiles]/ElectronMontecarlo.list
+args:--mpi --partition c18m --nruns 20  --arguments "--McSpectrumScaler/inputfile $TASK[ElectronMCscaling]/mcScalingWeights.root"
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:MCelectronTreeWriter
+depends: ElectronMCacqtfiles, ElectronMCscaling
+
+[generic]
+creat histograms for ISS electron data
+job:electron_2Dhist.py
+args: --threads_per_job 48 --arguments "--title ISS  $TASK[ISSTreeWriter]/results/ExampleAnalysis_Tree\*.root" 
+nmin:0
+nmax:0
+ref:ISSelectronHistogram
+depends:ISSTreeWriter
+
+[generic]
+creat histograms for MC electron data
+job:electron_2Dhist.py
+args: --threads_per_job 48 --arguments "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0 
+nmax:0
+ref:MCelectronhistogram
+depends:MCelectronTreeWriter
+
+[generic]
+creat 1D TRD histograms data file for ISS electron data in different energy bins
+job:TRD_hist.py
+args: --threads_per_job 48 --arguments "--title ISS $TASK[ISSTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:TRDhistElectronISS
+depends:ISSTreeWriter
+
+
+[generic]
+it does the template fits for electron ISS data in each energy bin
+job:template_fit.py
+args: --threads_per_job 48 --arguments "--title ISS $TASK[TRDhistElectronISS]/results/"
+nmin:0
+nmax:0
+ref:TempFitElectronISS
+depends:TRDhistElectronISS
+
+ 
+
+[generic]
+it makes a TOF selection plot for MC data
+job:TOF.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:TOFselectionCut
+depends:MCelectronTreeWriter
+
+
+[generic]
+it makes a Upper TOF charge selection plot for MC data
+job:UpperTOF.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:UppChargeTOFselectionCut
+depends:MCelectronTreeWriter
+
+
+[generic]
+it Active TRD Layer selection plot for MC data
+job:TRD_ActiveLayers.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:TRDALselectionCut
+depends:MCelectronTreeWriter
+
+
+[generic]
+it makes Inner Tracker Charge selection plot for MC data
+job:InnerTrackerCharge.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:ITCselectionCut
+depends:MCelectronTreeWriter
+
+[generic]
+it makes Tracker Chi square Y selection cut plot for MC data
+job:TTchiY.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:TTchiYselectionCut
+depends:MCelectronTreeWriter
+
+[generic]
+it makes E/R selection cut plot for MC data
+job:ER.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:ERselectionCut
+depends:MCelectronTreeWriter
+
+
+[interactive]
+run MCtriggers for MC electron
+command:MCtriggers
+args:--inputlist $TASK[ElectronMCacqtfiles]/ElectronMontecarlo.list --species Electron --binningfileName $MY_ANALYSIS/Energybin.txt
+ref:MCtriggers
+depends: ElectronMCacqtfiles
+
+[generic]
+measuring time
+job: ExampleAnalysisHeMeasuringTime 
+nmin: 0
+nmax: 0
+args: --arguments "--cutoff-factor 1.2 --cutoff-type Stoermer --cutoff-mode 25PN --start-time 1305853512 --end-time 1510526121 --binning $MY_ANALYSIS/Energybin.txt" --mpi
+#args: --arguments "--cutoff-factor 1.2 --cutoff-type Stoermer --cutoff-mode 25PN --start-time 1305853512 --end-time 1620024849 --binning $MY_ANALYSIS/Energybin.txt" --mpi
+ref: Measuring_Time
+depends: none
+
+
+[generic]
+it makes momentum histogram  plot for MC data
+job:MCmomentum.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:MCmomentumhist
+depends:MCelectronTreeWriter
+
+
+[generic]
+it makes He rejection plot for MC data
+job:HelimRejection.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:HeRejectionCut
+depends:MCelectronTreeWriter
+
+
+[generic]
+Makes efficiency plots selection cuts for ISS
+job:Cut_efficiency.py
+args: --threads_per_job 48 --arguments "--title ISS $TASK[ISSTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:CutefficiencyISS
+depends:ISSTreeWriter
+
+
+[generic]
+Makes two dimensional TOF plot
+job:2DTOFhist.py
+args: --threads_per_job 48 --arguments "--title ISS $TASK[ISSTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:2DTOFhist
+depends:ISSTreeWriter
+
+
+[generic]
+Makes efficiency plots of selection cuts  MC data
+job:Cut_efficiency.py
+args: --threads_per_job 48 --arguments "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:CutefficiencyMC
+depends:MCelectronTreeWriter
+
+
+[generic]
+Makes efficiency plots of Tag cuts  MC data
+job:TagCut_efficieny.py
+args: --threads_per_job 48 --arguments "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:TagCutefficiencyMC
+depends:MCelectronTreeWriter
+
+[generic]
+Makes efficiency plots Tag cuts for ISS
+job:TagCut_efficieny.py
+args: --threads_per_job 48 --arguments "--title ISS $TASK[ISSTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:TagCutefficiencyISS
+depends:ISSTreeWriter
+
+
+[generic]
+creat 1D He rejection hist data for ISS data 
+job:He_1Dhist.py
+args: --threads_per_job 48 --arguments "--title ISS $TASK[ISSTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:HeRejectionISS
+depends:ISSTreeWriter
+
+
+[generic]
+it makes a TrdTrackEcalCogDeltaX selection plot for MC or  data
+job:TrdTrackEcalCogDeltaX.py
+args: --threads_per_job 48 --arguments   "--title MC $TASK[MCelectronTreeWriter]/results/ExampleAnalysis_Tree\*.root"
+nmin:0
+nmax:0
+ref:TrdTrackEcalCogDeltaX
+depends:MCelectronTreeWriter
+
+
+[acqt]
+run the lepton  tree writer for ISS data 
+job:LeptonTreeWriter
+filelist:$TASK[ISSacqtfiles]/B1130_pass7_7.9_all.list
+args:--mpi --partition c18m --nruns 10  --timelimit 24:00
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:ISSLeptonTreeWriter
+depends:ISSacqtfiles
+
+
+[acqt]
+run Lepton tree writer for MC electron 
+job:LeptonTreeWriter
+filelist:$TASK[ElectronMCacqtfiles]/ElectronMontecarlo.list
+args:--mpi --partition c18m --nruns 10 --timelimit 24:00 --arguments "--McSpectrumScaler/inputfile $TASK[ElectronMCscaling]/mcScalingWeights.root"
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:MCLeptonTreeWriter
+depends: ElectronMCacqtfiles, ElectronMCscaling
+
+[generic]
+it makes New TOF selection cut plot for new MC data
+job:NewTOF.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[MCLeptonTreeWriter]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:NewTOFselectionCutMC
+depends:MCLeptonTreeWriter
+
+[generic]
+it makes New TOF selection cut plot for new ISS  data
+job:NewTOF.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[ISSLeptonTreeWriter]/results/LeptonAnalysis_Tree_ISS\*.root"
+nmin:0
+nmax:0
+ref:NewTOFselectionCutISS
+depends:ISSLeptonTreeWriter
+
+[interactive]
+creat acqt files for ISS data pass 6
+command:make_ACQT_filelist.py
+args:ISS B950_pass6_7.6
+ref:ISSacqtfilesPass6
+depends:none
+
+[interactive]
+creat acqt files for MC electron data pass 6
+command: make_ACQT_filelist.py
+args: -r -o ElectronMontecarlo.list MC "B1091_el.*_7.6"
+ref:ElectronMCacqtfilesPass6
+depends:none
+
+[interactive]
+Produce MC scaling file pass 6
+command: produce_mc_scalings --inputlist $TASK[ElectronMCacqtfilesPass6]/ElectronMontecarlo.list
+ref:ElectronMCscalingPass6
+depends:ElectronMCacqtfilesPass6
+
+[acqt]
+run Lepton tree writer for MC electron pass 6
+job:LeptonTreeWriter
+filelist:$TASK[ElectronMCacqtfilesPass6]/ElectronMontecarlo.list
+args:--mpi --partition c18m --nruns 10 --timelimit 24:00 --arguments "--McSpectrumScaler/inputfile $TASK[ElectronMCscalingPass6]/mcScalingWeights.root"
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:MCLeptonTreeWriterPass6
+depends: ElectronMCacqtfilesPass6 , ElectronMCscalingPass6
+
+[generic]
+it makes New TOF selection cut plot for new MC data
+job:NewTOF.py
+args: --threads_per_job 48 --arguments  "--title MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:NewTOFselectionCutMCPass6
+depends:MCLeptonTreeWriterPass6
+
+
+[generic]
+it makes Ecal lateral cut plot for ISS data
+job:EcalLateral.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $TASK[ISSLeptonTreeWriter]/results/LeptonAnalysis_Tree_ISS\*.root"
+nmin:0
+nmax:0
+ref:LateralselectionCutISS
+depends:ISSLeptonTreeWriter
+
+
+[generic]
+it makes TrackerTrackEcalCogDeltaY cut plot for MC data pass6
+job:TrackerTrackEcalCogDeltaY.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaYCutMC
+depends:MCLeptonTreeWriterPass6
+
+
+[generic]
+it makes TrackerTrackEcalCogDeltaX cut plot for MC data pass 6
+job:TrackerTrackEcalCogDeltaX.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:TrackerTrackEcalCogDeltaXCutMC
+depends:MCLeptonTreeWriterPass6
+
+
+[generic]
+it makes TrdLRHeliElecLowerCut cut plot for MC data pass6
+job:TrdLRHeliElecLowerCut.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:TrdLRHeliElecLowerCutCutMC
+depends:MCLeptonTreeWriterPass6
+
+
+[generic]
+it makes TofUpperCharge cut plot for MC data pass6
+job:CutTofUpperCharge.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:CutTofUpperChargeMC
+depends:MCLeptonTreeWriterPass6
+
+
+[generic]
+it makes TrdActiveLayers cut plot for MC data pass6
+job:CutTrdActiveLayers.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:CutTrdActiveLayersMC
+depends:MCLeptonTreeWriterPass6
+
+
+
+[generic]
+it makes TrackerCharge cut plot for MC data pass6
+job:CutTrackerCharge.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:CutTrackerChargeMC
+depends:MCLeptonTreeWriterPass6
+
+
+[generic]
+it makes TrackerChiSquare cut plot for MC data pass6
+job:CutTrackerChiSquareY.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:CutTrackerChiSquareMC
+depends:MCLeptonTreeWriterPass6
+
+
+[generic]
+it makes EnergyOverRigidity cut plot for MC data pass6
+job:CutEnergyOverRigidity.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:CutEnergyOverRigidityMC
+depends:MCLeptonTreeWriterPass6
+
+[generic]
+it makes 2D Ecal TRD Estimators plot for ISS data 
+job:2Dhistogram_Ecal_TRD_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $TASK[ISSLeptonTreeWriter]/results/LeptonAnalysis_Tree_ISS\*.root"
+nmin:0
+nmax:0
+ref:Ecal_TRD_EstimatorsISS
+depends:ISSLeptonTreeWriter
+
+[generic]
+it provides the Trd histogram data which is needed for template fit
+job:ElectronTemplateFit.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $TASK[ISSLeptonTreeWriter]/results/LeptonAnalysis_Tree_ISS\*.root"
+nmin:0
+nmax:0
+ref:ElectronTemplateFitISS
+depends:ISSLeptonTreeWriter
+
+
+[interactive]
+run MCtriggers for MC electron pass6
+command:MCtriggers
+args:--inputlist $TASK[ElectronMCacqtfilesPass6]/ElectronMontecarlo.list --species Electron --binningfileName $MY_ANALYSIS/Energybin.txt
+ref:MCtriggersPass6
+depends: ElectronMCacqtfilesPass6
+
+[generic]
+it makes MC momentum histogram for MC data for pass6
+job:ElectronMCmomentum.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:ElectronMCmontum
+depends:MCLeptonTreeWriterPass6
+
+[acqt]
+run the lepton  tree writer for ISS data pass 6
+job:LeptonTreeWriter
+filelist:$TASK[ISSacqtfilesPass6]/B950_pass6_7.6_all.list
+args:--mpi --partition c18m --nruns 10  --timelimit 24:00
+nexpected_per_job: 0
+nexpected_per_process: 2
+ref:ISSLeptonTreeWriterPass6
+depends:ISSacqtfilesPass6
+
+[interactive]
+run MCtriggers for MC electron pass7
+command:MCtriggers
+args:--inputlist $TASK[ElectronMCacqtfiles]/ElectronMontecarlo.list --species Electron --binningfileName $MY_ANALYSIS/Energybin.txt
+ref:MCtriggersPass7
+depends: ElectronMCacqtfiles
+
+[generic]
+it makes MC momentum histogram for MC data pass7
+job:ElectronMCmomentum.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriter]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:ElectronMCmontumPass7
+depends:MCLeptonTreeWriter
+
+
+[generic]
+it provides the Trd histogram data which is needed for template fit for pass6
+job:ElectronTemplateFit.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $TASK[ISSLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_ISS\*.root"
+nmin:0
+nmax:0
+ref:ElectronTemplateFitISSPass6
+depends:ISSLeptonTreeWriterPass6
+
+[generic]
+it makes 2D Ecal TRD Estimators plot for ISS data Pass 6
+job:2Dhistogram_Ecal_TRD_Estimators.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $TASK[ISSLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_ISS\*.root"
+nmin:0
+nmax:0
+ref:Ecal_TRD_EstimatorsISSPass6
+depends:ISSLeptonTreeWriterPass6
+
+[generic]
+it makes Ecal lateral cut plot for MC data
+job:EcalLateral.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:LateralselectionCutMCPass6
+depends:MCLeptonTreeWriterPass6
+
+[generic]
+it makes Ecal cut  distribution plot for MC data
+job:ElectronEcalCut.py
+args: --threads_per_job 48 --arguments  "--data_type MC $TASK[MCLeptonTreeWriterPass6]/results/LeptonAnalysis_Tree_MC\*.root"
+nmin:0
+nmax:0
+ref:ElectronEcalCutMCPass6
+depends:MCLeptonTreeWriterPass6
+
+[generic]
+it makes Ecal lateral cut plot for ISS data pass 6
+job:EcalLateral.py
+args: --threads_per_job 48 --arguments  "--data_type ISS $TASK[ISSLeptonTreeWriter]/results/LeptonAnalysis_Tree_ISS\*.root"
+nmin:0
+nmax:0
+ref:LateralselectionCutISSPass6
+depends:ISSLeptonTreeWriterPass6

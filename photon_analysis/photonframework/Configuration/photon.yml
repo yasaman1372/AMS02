@@ -1,0 +1,392 @@
+---
+analysis:
+  charge: 0
+  signal_ids: ["Gamma"]
+  energy:
+    min: 0.05
+    max: 1000
+    log_resolution: 0.0430103 # gives 100 bins
+  time:
+    min: "2011-01-01"
+    max: "2024-01-01"
+  max_charge: 4
+  estimators:
+    Energy: "McMomentum"
+    Time: "Time"
+  mc_estimators:
+    Energy: "McMomentum"
+    ThetaX: "McPrimaryDirThetaX"
+    ThetaY: "McPrimaryDirThetaY"
+    Theta: "McPrimaryDirTheta"
+    Phi: "McPrimaryDirPhi"
+  energy_binning: "energy_search"
+  binnings:
+    search: [0.05, 0.25, 10, 1000]
+  mc_energy: "McMomentum"
+  preselections:
+    - "TwoTracks"
+    - "EcalShower"
+  nside: 128 # recommended: 128 for ECAL, 256 for Vertex
+  alpha_bins: 1000 # recommended: 200 for ECAL, 1000 for Vertex
+variables:
+  #  - "amsvertices"
+  - "acc"
+  - "ecal"
+  - "mcprimary"
+  - "mcsecondaries"
+  #- "mvas"
+  #- "selections"
+  - "tofclusters"
+  - "trackpair"
+  - "trdsegments"
+  - "trigger"
+  - "conversion"
+  - "weighting"
+datasets: "photon_datasets.yml"
+selections:
+  mc_pp_in_utof:
+    label: "MC Pair Production in Upper ToF"
+    cuts:
+      NMcSecondaryParticles:
+        min: 1.5
+      McSecondaryPairProductionElectronId:
+        min: -0.5
+      McSecondaryPairProductionPositronId:
+        min: -0.5
+      McSecondaryPairProductionElectronCoordX:
+        min: -65
+        max: 65
+      McSecondaryPairProductionElectronCoordY:
+        min: -65
+        max: 65
+      McSecondaryPairProductionElectronCoordZ:
+        min: 60
+        max: 70
+      McSecondaryPairProductionPositronCoordX:
+        min: -65
+        max: 65
+      McSecondaryPairProductionPositronCoordY:
+        min: -65
+        max: 65
+      McSecondaryPairProductionPositronCoordZ:
+        min: 60
+        max: 70
+
+  single_pair:
+    label: "Exactly Two Tracks"
+    cuts:
+      TrkNTracks:
+        min: 1.5
+        max: 2.5
+
+  at_least_one_pair:
+    label: "At least Two Tracks"
+    cuts:
+      TrkNTracks:
+        min: 1.5
+        tag_cuts: notrackpair
+      TrkTrackHasBestPair:
+        bool: true
+        tag_cuts: notrackpair
+  trd_preselection:
+    label: "TRD Quantity Applicability"
+    cuts:
+       NTrdHits:
+         max: 50.5
+         tag_cuts: notrd
+  no_trd_segments:
+    label: "TRD Segment selection"
+    cuts:
+      NTrdSegmentsXZ:
+        max: 0.5
+        tag_cuts: notrd
+      NTrdSegmentsYZ:
+        max: 0.5
+        tag_cuts: notrd
+  trd_layer_selection:
+    label: "Up to 10 TRD layers with hits"
+    cuts:
+      TrdNActiveLayers:
+        max: 10.5
+        tag_cuts: notrd
+  trd_hit_selection:
+    label: "Up to 10 TRD hits"
+    cuts:
+      NTrdHits:
+        max: 10.5
+        tag_cuts: notrd
+  one_ecal_shower:
+    label: "Exactly one ECAL shower"
+    cuts:
+      NEcalShowers:
+        min: 0.5
+        max: 1.5
+  converted_photon:
+    label: "Converted Photon Selection"
+  physics_trigger:
+    label: "Has any Physics Trigger"
+    cuts:
+      HasPhysicsTrigger:
+        bool: true
+        tag_cuts: notrigger
+  unbiased_trigger:
+    label: "Has any Unbiased Trigger"
+    cuts:
+      HasUnbiasedTrigger:
+        bool: true
+  opposite_rigidity_track_pair:
+    label: "Converted Photon Track Selection"
+    cuts:
+      TrkTrackHasBestPair:
+        bool: true
+        tag_cuts: notrackpair
+      TrkTrackBestPairRigidityProduct:
+        max: 0
+        tag_cuts: notrackpair
+  vertex_quality:
+    label: "Converted Photon Track Quality Selection"
+    cuts:
+      TrkTrackBestPairMinDistance:
+        max: 0.5
+        tag_cuts: notrackquality
+      TrkTrackBestPairMinDistanceCoordZ:
+        min: 30
+        tag_cuts: notrackquality
+      TrkTrackBestPairFirstTrackHits:
+        min: 3.5
+        tag_cuts: notrackquality
+      TrkTrackBestPairSecondTrackHits:
+        min: 3.5
+        tag_cuts: notrackquality
+      #TrkTrackBestPairFirstHasHitInL1:
+      #  bool: false
+      #TrkTrackBestPairSecondHasHitInL1:
+      #  bool: false
+      TrkTrackBestPairMinDistanceExtrapolatedRAtLowerTRD:
+        max: 70
+        tag_cuts: notrackquality
+      TrkTrackBestPairMinDistanceExtrapolatedRAtUpperTRD:
+        max: 90
+        tag_cuts: notrackquality
+      TrkTrackBestPairElectronRigidityRatio:
+        max: 10
+        tag_cuts: notrackquality
+      TrkTrackBestPairMinDistanceInvariantMass:
+        max: 0.05
+        tag_cuts: notrackquality
+  photon_vertex_tof:
+    label: "Converted Photon ToF Selection"
+    cuts:
+      TrkTrackBestPairFirstClosestUTofXEnergy:
+        min: 3
+        max: 8
+        tag_cuts: notof
+      TrkTrackBestPairSecondClosestUTofXEnergy:
+        min: 3
+        max: 8
+        tag_cuts: notof
+  ecal_fiducial_volume:
+    label: "ECAL shower in fiducial volume"
+    cuts:
+      EcalMaxEnergyShowerPositionX:
+        min: -30.0
+        max: 30.0
+      EcalMaxEnergyShowerPositionY:
+        min: -30.0
+        max: 30.0
+  ecal_photon:
+    label: "Bastians ECAL Selection"
+    cuts:
+      # Ecal Trigger, but no ToF trigger
+      HasPhysicsEcalTrigger:
+        bool: true
+      HasPhysicsTofTrigger:
+        bool: false
+      # Exactly one KXRec (3D) shower
+      NEcalShowers:
+        min: 0.5
+        max: 1.5
+      # No tracker tracks
+      TrkNTracks:
+        max: 0.5
+      NTrdHits:
+        max: 10.5
+      NTrdSegmentsXZ:
+        max: 0.5
+      NTrdSegmentsYZ:
+        max: 0.5
+      # downward-going shower
+      EcalMaxEnergy2DShowerEntryPositionZ:
+        min: -150
+      # deposited energy > 1 GeV
+      EcalMaxEnergy2DShowerDepositedEnergy:
+        min: 1
+      # lateral shower energy fractions
+      EcalMaxEnergy2DShowerRatio1cm:
+        min: 0.8
+      EcalMaxEnergy2DShowerRatio3cm:
+        min: 0.95
+      # longitudinal shower fit
+      EcalMaxEnergy2DShowerLongitudinalChiSquare:
+        max: 20
+      # KXRec Likelihood
+      EcalReweightedLikelihood:
+        max: 3.2
+      # Angle between 2D and 3D shower axis
+      EcalMaxEnergyShowerDirectionsAngleInDegrees:
+        max: 8
+      # Ecal Shower axis pointing at TRD
+      EcalMaxEnergyShowerDirectionCosTheta:
+        min: 0.9
+      # IsInsideTrd in Bastians tree uses a more precise TRD shape, not just a circle
+      EventPassThroughLowerTRD:
+        bool: true
+      EventPassThroughUpperTRD:
+        bool: true
+      MeanLowerTofClusterEnergy:
+        max:
+          function: "broken_log_energy"
+          parameters:
+            a: 1.666
+            b: 0
+            c: 1.4
+      AccNumberOfTwosidedHits:
+        max:
+          function: "broken_log_energy"
+          parameters:
+            a: 2
+            b: -1.6
+            c: 0.5
+tag_cuts:
+  converted_photon:
+    default:
+      - at_least_one_pair
+      - trd_preselection
+      - physics_trigger
+      - opposite_rigidity_track_pair
+      - trd_layer_selection
+      - no_trd_segments
+      - vertex_quality
+      - photon_vertex_tof
+    notrackpair:
+      - trd_preselection
+      - physics_trigger
+      - trd_layer_selection
+      - no_trd_segments
+      # use events with ecal showers here?
+    notrd:
+      - at_least_one_pair
+      - physics_trigger
+      - opposite_rigidity_track_pair
+      - vertex_quality
+      - photon_vertex_tof
+    notrigger:
+      - at_least_one_pair
+      - trd_preselection
+      - opposite_rigidity_track_pair
+      - trd_layer_selection
+      - no_trd_segments
+      - vertex_quality
+      - photon_vertex_tof
+    notrackquality:
+      - at_least_one_pair
+      - trd_preselection
+      - physics_trigger
+      - opposite_rigidity_track_pair
+      - trd_layer_selection
+      - no_trd_segments
+      - photon_vertex_tof
+    notof:
+      - at_least_one_pair
+      - trd_preselection
+      - physics_trigger
+      - opposite_rigidity_track_pair
+      - trd_layer_selection
+      - no_trd_segments
+      - vertex_quality
+samples:
+  converted_photons:
+    label: "Converting Photons"
+    preselection: "TwoTracks"
+    selections:
+      - "at_least_one_pair"
+      - "trd_preselection"
+      - "physics_trigger"
+      - "opposite_rigidity_track_pair"
+      - "trd_layer_selection"
+      - "no_trd_segments"
+      - "vertex_quality"
+      - "photon_vertex_tof"
+    estimators:
+      Energy: "TrkTrackBestPairRigidity"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+    tag_cuts: converted_photon
+
+  photon_two_tracks:
+    label: "Converting Photons"
+    preselection: "TwoTracks"
+    selections:
+      - "single_pair"
+      - "not_too_many_trd_hits"
+      - "converted_photon"
+    estimators:
+      Energy: "TrkTrackBestPairRigidity"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+
+  photon_candidates:
+    label: "Converting Photons"
+    preselection: "TwoTracks"
+    selections:
+      - "at_least_one_pair"
+      - "photon_candidate"
+    estimators:
+      Energy: "TrkTrackBestPairRigidity"
+      GalacticLatitude: "TrkTrackBestPairMinDistanceDirGalacticLatitude"
+      GalacticLongitude: "TrkTrackBestPairMinDistanceDirGalacticLongitude"
+      ThetaX: "TrkTrackBestPairMinDistanceDirThetaX"
+      ThetaY: "TrkTrackBestPairMinDistanceDirThetaY"
+
+  mc_pair_production:
+    label: "MC particle undergoes pair production"
+    preselection: "McPairProduction"
+    selections:
+      - "mc_pp_in_utof"
+    estimators:
+      Energy: "McMomentum"
+
+  ecal_photons:
+    label: "ECAL Shower Photons"
+    preselection: "EcalShower"
+    selections:
+      - "ecal_fiducial_volume"
+      - "ecal_photon"
+    estimators:
+      Energy: "EcalEnergy"
+      GalacticLatitude: "EcalMaxEnergyShowerDirectionGalacticLatitude"
+      GalacticLongitude: "EcalMaxEnergyShowerDirectionGalacticLongitude"
+      ThetaX: "EcalMaxEnergyShowerDirectionThetaX"
+      ThetaY: "EcalMaxEnergyShowerDirectionThetaY"
+ 
+photon_analyses:
+  converted_photons:
+    sample: "converted_photons"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+    additional_variables: []
+  ecal_photons:
+    sample: "ecal_photons"
+    iss_dataset: "iss"
+    mc_signal_dataset: "mc_ph"
+    mc_background_datasets:
+      - "mc_pr"
+      - "mc_el"
+    comparison: "Ecal"

@@ -1,0 +1,52 @@
+Do the following once:
+
+0. Make sure ACsoft is compiled and $ACSOFTDIR points to the
+   correct version of ACsoft that you need for this analysis.
+
+1. Add the following to your .profile / .zprofile:
+
+   pushd /Full/Path/To/ExampleAnalysis &>/dev/null
+   source Scripts/thisanalysis.sh
+   popd &>/dev/null
+
+   Alternatively, use ac_choose to set up your environment and be able
+   to switch between different environments for analysis. See the "install"
+   repository.
+
+2. Relogin
+
+3. Execute
+
+  cd $MY_ANALYSIS
+  mkdir build
+  cd build
+  cmake ..
+  make
+
+If you use several versions of ACsoft, specify the correct one explicitly
+in the call to cmake:
+
+  cmake .. -DACsoft_DIR=$ACSOFTDIR/build
+
+or the CMake build system will pick the first ACsoft version it finds.
+
+4. Run a few tests:
+
+  Create a file list:
+  make_ACQT_filelist.py ISS B950_pass6_7.4 all -o test.list
+  head -n 2 test.list > short.list
+
+  Write tree:
+  ExampleAnalysisTreeWriter --inputlist short.list
+
+  Hint #1: Use run_parallel_acqt_job.py to submit batch jobs to a
+           cluster for an analysis on a large number of files.
+
+  Perform analysis:
+  ExampleAnalysisTreeReader --input ExampleAnalysis_Tree.root
+
+  Inspect results:
+  root -l ExampleAnalysis_Tree_Results.root
+
+  Hint #2: Automatize these tasks using ac_cookbook.
+
